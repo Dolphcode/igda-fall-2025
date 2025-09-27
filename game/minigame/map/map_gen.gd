@@ -94,12 +94,15 @@ func gen_row(cell_row: int, chunk_type: int) -> void:
 		obj.position = pos
 		obj.spawner_lower_bound = spawner_lower_bound
 		
+		obj.speed = 5.0
+		
 	elif chunk_type == ChunkType.WATER:
 		var pos: Vector2 = obstacle_layer.map_to_local(Vector2i(max_col, cell_row))
 		pos = to_local(obstacle_layer.to_global(pos))
 		var obj: Spawner = log_spawner.instantiate()
 		call_deferred("add_child", obj)
 		obj.position = pos
+		obj.speed = [0.25, 0.5, 0.75, 1, 1.25].pick_random()
 		obj.spawner_lower_bound = spawner_lower_bound
 
 

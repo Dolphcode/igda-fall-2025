@@ -11,6 +11,7 @@ class_name Spawner
 @export var spawnable: PackedScene
 @export var spawner_lower_bound: float
 @export var tile_pos: Vector2i
+@export var speed: float
 
 var spawn_time: float = 0
 
@@ -24,10 +25,11 @@ func _process(delta):
 	spawn_time -= delta
 	if spawn_time <= 0:
 		spawn_time = randf_range(spawn_time_min, spawn_time_max)
-		var obj = spawnable.instantiate()
+		var obj: Spawnable = spawnable.instantiate()
 		get_parent().call_deferred("add_child", obj)
 		obj.position = position
 		obj.direction = direction
+		obj.speed = speed
 		if obj is Log:
 			obj.tile_pos = tile_pos
 		
