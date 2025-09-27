@@ -19,11 +19,13 @@ var body_size: int = 1
 var tile_size: int
 var move_time: float = 0
 
+func _init():
+	# Select body size, must be done on init so it can be accessed by the spawner
+	body_size = randi_range(min_body_size, max_body_size)
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# Select body size
-	body_size = randi_range(min_body_size, max_body_size)
-	
 	# Initialize time to move
 	move_time = speed
 	

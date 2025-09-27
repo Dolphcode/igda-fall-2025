@@ -32,6 +32,11 @@ func _process(delta):
 		obj.speed = speed
 		if obj is Log:
 			obj.tile_pos = tile_pos
+			spawn_time += speed * (obj.body_size + 2)
+			
+			if direction == 1:
+				obj.position.x -= (obj.body_size - 1) * get_parent().tile_size
+				obj.tile_pos.x -= (obj.body_size - 1)
 		
 	if global_position.y > spawner_lower_bound:
 		queue_free()

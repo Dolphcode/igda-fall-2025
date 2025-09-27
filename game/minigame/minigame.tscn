@@ -160,6 +160,7 @@ size = Vector2(2000, 1474)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_q6aue")
+camera_speed = 5.0
 
 [node name="Environment" parent="." instance=ExtResource("3_o43ct")]
 unique_name_in_owner = true
@@ -195,14 +196,14 @@ script = ExtResource("2_jxfoc")
 [node name="DestroyBounds" type="Node2D" parent="."]
 
 [node name="LeftDestroyArea2D" type="Area2D" parent="DestroyBounds"]
-position = Vector2(-192, 324)
+position = Vector2(-455, 324)
 script = ExtResource("10_685oy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyBounds/LeftDestroyArea2D"]
 shape = SubResource("RectangleShape2D_2df8i")
 
 [node name="RightDestroyArea2D" type="Area2D" parent="DestroyBounds"]
-position = Vector2(1344, 324)
+position = Vector2(1619, 324)
 script = ExtResource("10_685oy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyBounds/RightDestroyArea2D"]

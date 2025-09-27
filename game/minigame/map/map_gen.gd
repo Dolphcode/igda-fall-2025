@@ -97,13 +97,18 @@ func gen_row(cell_row: int, chunk_type: int) -> void:
 		obj.speed = 5.0
 		
 	elif chunk_type == ChunkType.WATER:
-		var pos: Vector2 = obstacle_layer.map_to_local(Vector2i(max_col, cell_row))
+		var l_or_r = randi_range(0, 1)
+		var spawn_x = max_col if l_or_r == 0 else min_col
+		var dir = -1 if l_or_r == 0 else 1
+		
+		var pos: Vector2 = obstacle_layer.map_to_local(Vector2i(spawn_x, cell_row))
 		pos = to_local(obstacle_layer.to_global(pos))
 		var obj: Spawner = log_spawner.instantiate()
 		call_deferred("add_child", obj)
 		obj.position = pos
 		obj.speed = [0.25, 0.5, 0.75, 1, 1.25].pick_random()
 		obj.spawner_lower_bound = spawner_lower_bound
+		obj.direction = dir
 
 
 ## Equivalent to moving the player up one tile. But moves the whole tileset instead to 
