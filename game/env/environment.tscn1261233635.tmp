@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbx0en01saiji"]
+
+[ext_resource type="Texture2D" uid="uid://b66nly2o1ace8" path="res://icon.svg" id="1_jo8dv"]
+[ext_resource type="Script" uid="uid://be3jttu3u70xg" path="res://game/window/env_view.gd" id="2_pa2v6"]
+
+[sub_resource type="GDScript" id="GDScript_pa2v6"]
+resource_name = "camera_mover"
+script/source = "extends Camera2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _notification(what):
+	if what == NOTIFICATION_DRAW:
+		print(\"drawing\")
+	elif what == NOTIFICATION_WM_POSITION_CHANGED:
+		print(\"moving\")
+"
+
+[node name="Environment" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 4)
+texture = ExtResource("1_jo8dv")
+
+[node name="Window" type="Window" parent="."]
+oversampling_override = 1.0
+position = Vector2i(385, 181)
+script = ExtResource("2_pa2v6")
+screen_fraction = 0.333
+
+[node name="Camera2D" type="Camera2D" parent="Window"]
+position = Vector2(196, 111)
+script = SubResource("GDScript_pa2v6")

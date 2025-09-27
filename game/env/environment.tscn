@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://vk1r56fcxnq6"]
+
+[ext_resource type="Texture2D" uid="uid://b66nly2o1ace8" path="res://icon.svg" id="1_jo8dv"]
+
+[node name="SubViewport" type="SubViewport"]
+size = Vector2i(1024, 512)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 1, 1)
+texture = ExtResource("1_jo8dv")

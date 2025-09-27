@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://duifkn375bll"]
+
+[ext_resource type="Script" uid="uid://be3jttu3u70xg" path="res://game/window/env_view.gd" id="1_0h7ur"]
+
+[sub_resource type="GDScript" id="GDScript_pa2v6"]
+resource_name = "camera_mover"
+script/source = "extends Camera2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="EnvView" type="Window" node_paths=PackedStringArray("environment")]
+oversampling_override = 1.0
+position = Vector2i(385, 181)
+script = ExtResource("1_0h7ur")
+screen_fraction = 0.333
+environment = NodePath("")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(196, 111)
+script = SubResource("GDScript_pa2v6")

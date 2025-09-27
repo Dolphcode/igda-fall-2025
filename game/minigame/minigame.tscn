@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbx0en01saiji"]
+
+[ext_resource type="Texture2D" uid="uid://b66nly2o1ace8" path="res://icon.svg" id="1_wap7k"]
+[ext_resource type="Script" uid="uid://bok6yxdeyovd4" path="res://game/minigame/player/player.gd" id="2_jxfoc"]
+[ext_resource type="PackedScene" uid="uid://vk1r56fcxnq6" path="res://game/env/environment.tscn" id="3_o43ct"]
+[ext_resource type="PackedScene" uid="uid://duifkn375bll" path="res://game/window/env_view.tscn" id="3_syh38"]
+[ext_resource type="Script" uid="uid://kdi7w22lt3ev" path="res://game/env/environment.gd" id="4_jxfoc"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 4)
+texture = ExtResource("1_wap7k")
+script = ExtResource("2_jxfoc")
+
+[node name="EnvView" parent="." node_paths=PackedStringArray("environment") instance=ExtResource("3_syh38")]
+environment = NodePath("../Environment")
+
+[node name="Environment" parent="." instance=ExtResource("3_o43ct")]
+script = ExtResource("4_jxfoc")
