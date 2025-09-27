@@ -57,8 +57,6 @@ func _process(delta):
 		if curr_orientation == F_Orientation.TOPDOWN || curr_orientation == F_Orientation.SIDEWAYS:
 			var v_dist1 = test_axes[2] - test_axes[1]
 			var v_dist2 = test_axes[1] - test_axes[0]
-			print(v_dist1)
-			print(v_dist2)
 			var threshold_1 = abs(fixed_axes[2] - fixed_axes[1])
 			var threshold_2 = abs(fixed_axes[0] - fixed_axes[1])
 			orientation_correct = threshold_1 < padding and threshold_2 < padding and abs(v_dist1 - dist) < padding and abs(v_dist2 - dist) < padding

@@ -31,7 +31,6 @@ func activate_instance():
 	for i in range(3):
 		characters[i] = char(randi_range(CHAR_A, CHAR_Z))
 		labels[i].text = characters[i]
-		print(characters[i])
 	
 	visible = true
 

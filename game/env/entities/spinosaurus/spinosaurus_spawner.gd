@@ -23,7 +23,6 @@ func _ready():
 func _process(delta):
 	tt_spawn_att -= delta
 	if tt_spawn_att <= 0:
-		print("spawn")
 		tt_spawn_att = spawn_time
 		var view: EnvView = window_man.env_views.pick_random()
 		var spinosaurus: SpinosaurusInstance = spinosaurus_inst.instantiate()
