@@ -159,6 +159,7 @@ size = Vector2(50, 3000)
 size = Vector2(2000, 1474)
 
 [node name="Game" type="Node2D"]
+process_priority = 1
 script = ExtResource("1_q6aue")
 camera_speed = 5.0
 
