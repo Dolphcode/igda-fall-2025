@@ -1,9 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://lh71jjwsoaxx"]
 
-[ext_resource type="Texture2D" uid="uid://b66nly2o1ace8" path="res://icon.svg" id="1_35gdn"]
+[ext_resource type="Texture2D" uid="uid://benw2r7hdca22" path="res://proto_spinosaurus.jpg" id="1_35gdn"]
 [ext_resource type="Script" uid="uid://b8t0o5rrcc8ba" path="res://game/env/entities/spinosaurus/spinosaurus_instance.gd" id="2_s5hi4"]
 
 [node name="Spinosaurus" type="Sprite2D"]
 modulate = Color(0, 1, 1, 1)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_35gdn")
 script = ExtResource("2_s5hi4")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-320, -320, 640, 640)
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
