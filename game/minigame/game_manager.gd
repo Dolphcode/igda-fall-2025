@@ -5,11 +5,14 @@ extends Node2D
 ## staet
 class_name GameManager
 
+# Config
+@export_category("Minigame Config")
+@export var camera_speed: float = 20
 
+# Onready
 @onready var player: Player = %Player
 @onready var map: MapGenerator = %Map
 @onready var camera: Camera2D = $Camera2D
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,7 +23,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	# Perform X displacement
-	var map_center_disp = roundi((map.max_col - map.min_col) / 2.0)
+	var map_center_disp = roundi((map.max_col - map.min_col) * 0.5)
 	player.tile_offset.x = player.tile_offset.x
 	player.position.x = (player.tile_offset.x + map_center_disp) * map.tile_size
 	
@@ -34,6 +37,5 @@ func _process(delta):
 		camera.position.y = minf(player.position.y, camera.position.y - player.tile_offset.y * map.tile_size)
 		player.tile_offset.y -= sign(player.tile_offset.y)
 		
-		
-	
-	camera.position.y -= delta * 20
+	# Move camera
+	camera.position.y -= delta * camera_speed

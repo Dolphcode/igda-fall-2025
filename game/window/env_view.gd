@@ -1,4 +1,5 @@
 extends Window
+## Represents a view of the background environment via a window
 class_name EnvView
 
 @export_category("Window Property Config")

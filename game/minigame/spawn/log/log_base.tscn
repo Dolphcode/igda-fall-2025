@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cgaufrse31t0d"]
 
-[ext_resource type="Script" uid="uid://cmcjhskcvq08a" path="res://game/env/spawn/log/log.gd" id="1_wyilr"]
+[ext_resource type="Script" uid="uid://cmcjhskcvq08a" path="res://game/minigame/spawn/log/log.gd" id="1_wyilr"]
 [ext_resource type="Texture2D" uid="uid://b66nly2o1ace8" path="res://icon.svg" id="2_7px8n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6edkl"]

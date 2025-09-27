@@ -7,10 +7,10 @@
 [ext_resource type="Script" uid="uid://6ky7kg04jmyc" path="res://game/minigame/map/map_gen.gd" id="3_ry280"]
 [ext_resource type="PackedScene" uid="uid://duifkn375bll" path="res://game/window/env_view.tscn" id="3_syh38"]
 [ext_resource type="Script" uid="uid://kdi7w22lt3ev" path="res://game/env/environment.gd" id="4_jxfoc"]
-[ext_resource type="PackedScene" uid="uid://cvslcagsg2q5x" path="res://game/env/spawn/log_spawner.tscn" id="6_6edkl"]
+[ext_resource type="PackedScene" uid="uid://cvslcagsg2q5x" path="res://game/minigame/spawn/log_spawner.tscn" id="6_6edkl"]
 [ext_resource type="Texture2D" uid="uid://busdijdlqt0v2" path="res://assets/sprites/tilesets/tilemap.png" id="6_syh38"]
-[ext_resource type="PackedScene" uid="uid://dt85g7fyvmta7" path="res://game/env/spawn/car_spawner.tscn" id="9_2df8i"]
-[ext_resource type="Script" uid="uid://bn2jlo8e17xhl" path="res://game/env/destroy_area.gd" id="10_685oy"]
+[ext_resource type="PackedScene" uid="uid://dt85g7fyvmta7" path="res://game/minigame/spawn/car_spawner.tscn" id="9_2df8i"]
+[ext_resource type="Script" uid="uid://bn2jlo8e17xhl" path="res://game/minigame/destroy_area.gd" id="10_685oy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q6aue"]
 texture = ExtResource("6_syh38")

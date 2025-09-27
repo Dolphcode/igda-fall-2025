@@ -10,23 +10,33 @@ enum ChunkType {
 }
 
 # Config
+## NOTE: I could've auto configured this in _ready but for simplicity sake we can just copy that data here
 @export_category("Tilemap Size Config")
+## The total height the tilemap is allowed to be at any given point in time
 @export var tilemap_height: int = 40
+## The index of the bottom row of the tilemap
 @export var min_row: int = 40
+## The index of the leftmost column of the tilemap
 @export var min_col: int = -1
+## The index of the rightmost column of the tilemap
 @export var max_col: int = 32
 
 @export_category("Chunk Config")
+## The minimum of rows for a randomly generated chunk of terrain
 @export var min_chunk_height: int = 2
+## The maximum number of rows for a randomly generated chunk of terrain
 @export var max_chunk_height: int = 7
 
 @export_category("Grass Area Config")
+## The random rate at which trees are spawned when a grass chunk is generated
 @export var tree_rate: float = 0.4
 
 @export_category("Road Config")
+## The spawner object responsible for spawning cars on the road
 @export var car_spawner: PackedScene
 
 @export_category("Water Config")
+## The spawner object responsible for spawning logs on the road
 @export var log_spawner: PackedScene
 
 @onready var ground_layer: TileMapLayer = $GroundLayer
@@ -54,20 +64,19 @@ func _ready():
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
+## Generates a random chunk of ground
 func randomize_chunk():
 	next_chunk = randi_range(min_chunk_height, max_chunk_height)
 	next_chunk_type = randi_range(0, 2)
 
 
-func gen_row(cell_row: int, chunk_type: int):
+## Generates the next row based on the type of tile the row is
+## TODO: Copy row to bottom area so that we can teleport the map up past a certain
+##		 point to prevent overflow. Not super necessary though.
+func gen_row(cell_row: int, chunk_type: int) -> void:
 	# Fill with terrain
 	for i in range(min_col, max_col + 1):
 		ground_layer.set_cell(Vector2i(i, cell_row), 0, Vector2i(0, chunk_type))
-		
 	
 	# Implement obstacles if needed
 	if chunk_type == ChunkType.GRASS:
@@ -94,7 +103,10 @@ func gen_row(cell_row: int, chunk_type: int):
 		obj.spawner_lower_bound = spawner_lower_bound
 
 
-func raise_tiles():
+## Equivalent to moving the player up one tile. But moves the whole tileset instead to 
+## keep the player's position in the screen fixed.
+## TODO: Teleport the entire map and map elements past a certain point to prevent overflow
+func raise_tiles() -> void:
 	accum += 1
 	if accum == next_chunk:
 		for j in range(accum):
@@ -112,9 +124,11 @@ func raise_tiles():
 	pass
 
 
-func lower_tiles():
+## Functionally equivalent to moving the player down one tile
+func lower_tiles() -> void:
 	accum -= 1
 
 
+## Shortcut function for converting a global position g_pos to a tile_map posititon
 func to_tile_pos(g_pos: Vector2) -> Vector2i:
 	return ground_layer.local_to_map(ground_layer.to_local(g_pos))
