@@ -1,13 +1,15 @@
 extends Node2D
-## The game manager is responsible for translating player offsets to the actual
-## state of the game, by moving and scrolling the tile map and adjusting the player's
-## position. The game manager also manages the camera and adjusts it's position based on game
-## staet
+## The game manager manages the game state. It is responsible for updating the state 
+## of the minigame based on player input and minigame entity state changes. The minigame
+## is also connected to the background environment
 class_name GameManager
 
 # Config
 @export_category("Minigame Config")
 @export var camera_speed: float = 20
+
+@export_category("Environment Config")
+
 
 # Onready
 @onready var player: Player = %Player
@@ -17,6 +19,8 @@ class_name GameManager
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	camera.position = player.position
+	
+	%WindowManager.create_env_view()
 	pass # Replace with function body.
 
 

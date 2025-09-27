@@ -1,16 +1,17 @@
-[gd_scene load_steps=16 format=4 uid="uid://cbx0en01saiji"]
+[gd_scene load_steps=17 format=4 uid="uid://cbx0en01saiji"]
 
-[ext_resource type="Script" uid="uid://qrectqi54117" path="res://game/minigame/game_manager.gd" id="1_q6aue"]
+[ext_resource type="Script" uid="uid://qrectqi54117" path="res://game/game_manager.gd" id="1_q6aue"]
 [ext_resource type="Texture2D" uid="uid://b66nly2o1ace8" path="res://icon.svg" id="1_wap7k"]
 [ext_resource type="Script" uid="uid://bok6yxdeyovd4" path="res://game/minigame/player/player.gd" id="2_jxfoc"]
 [ext_resource type="PackedScene" uid="uid://vk1r56fcxnq6" path="res://game/env/environment.tscn" id="3_o43ct"]
 [ext_resource type="Script" uid="uid://6ky7kg04jmyc" path="res://game/minigame/map/map_gen.gd" id="3_ry280"]
-[ext_resource type="PackedScene" uid="uid://duifkn375bll" path="res://game/window/env_view.tscn" id="3_syh38"]
+[ext_resource type="PackedScene" uid="uid://duifkn375bll" path="res://game/env/window/env_view.tscn" id="3_syh38"]
 [ext_resource type="Script" uid="uid://kdi7w22lt3ev" path="res://game/env/environment.gd" id="4_jxfoc"]
 [ext_resource type="PackedScene" uid="uid://cvslcagsg2q5x" path="res://game/minigame/spawn/log_spawner.tscn" id="6_6edkl"]
 [ext_resource type="Texture2D" uid="uid://busdijdlqt0v2" path="res://assets/sprites/tilesets/tilemap.png" id="6_syh38"]
 [ext_resource type="PackedScene" uid="uid://dt85g7fyvmta7" path="res://game/minigame/spawn/car_spawner.tscn" id="9_2df8i"]
 [ext_resource type="Script" uid="uid://bn2jlo8e17xhl" path="res://game/minigame/destroy_area.gd" id="10_685oy"]
+[ext_resource type="Script" uid="uid://pubqhkhp3rkg" path="res://game/env/window/window_manager.gd" id="12_t6p3w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q6aue"]
 texture = ExtResource("6_syh38")
@@ -162,6 +163,7 @@ size = Vector2(2000, 1474)
 script = ExtResource("1_q6aue")
 
 [node name="Environment" parent="." instance=ExtResource("3_o43ct")]
+unique_name_in_owner = true
 script = ExtResource("4_jxfoc")
 
 [node name="Map" type="Node2D" parent="."]
@@ -189,9 +191,6 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_wap7k")
 script = ExtResource("2_jxfoc")
 
-[node name="EnvView" parent="." node_paths=PackedStringArray("environment") instance=ExtResource("3_syh38")]
-environment = NodePath("../Environment")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="DestroyBounds" type="Node2D" parent="."]
@@ -217,6 +216,12 @@ script = ExtResource("10_685oy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyBounds/BorromDestroyArea2D"]
 position = Vector2(0, 2209)
 shape = SubResource("RectangleShape2D_685oy")
+
+[node name="WindowManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("12_t6p3w")
+env_view_scene = ExtResource("3_syh38")
+metadata/_custom_type_script = "uid://pubqhkhp3rkg"
 
 [connection signal="area_entered" from="DestroyBounds/LeftDestroyArea2D" to="DestroyBounds/LeftDestroyArea2D" method="_on_area_entered"]
 [connection signal="area_entered" from="DestroyBounds/RightDestroyArea2D" to="DestroyBounds/RightDestroyArea2D" method="_on_area_entered"]

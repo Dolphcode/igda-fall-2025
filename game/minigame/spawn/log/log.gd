@@ -41,6 +41,7 @@ func _process(delta):
 	# Move the log every frame
 	move_time -= delta
 	if move_time <= 0:
+		print("move")
 		move_time = speed
 		tile_pos.x += direction
 		position.x += direction * tile_size
