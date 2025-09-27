@@ -11,6 +11,12 @@ class_name EnvView
 # Onready vars
 @onready var camera: Camera2D = $Camera2D
 
+var last_pos: Vector2
+var last_vel: Vector2 = Vector2.ZERO
+var curr_vel: Vector2 = Vector2.ZERO
+var accel: float = 0
+var accel_accum: float = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Get screen parameters
@@ -25,13 +31,23 @@ func _ready():
 	self.maximize_disabled = true
 	self.always_on_top = true
 	self.world_2d = environment.world_2d
+	
+	last_pos = camera.position
 
 
-var delta: Vector2i = Vector2i.ZERO
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	last_pos = camera.position
+	last_vel = curr_vel
 	# Sync camera position to screen position
 	camera.position = position + Vector2i(0.5 * self.size)
+	
+	curr_vel = (camera.position - last_pos) / delta
+	accel = (curr_vel - last_vel / delta).length()
+	accel_accum = (accel_accum * 0.25) + (accel * 0.75)
+	#print("Win Accel: " + str(accel_accum))
+	if accel_accum > 4e5:
+		print("SHAKING")
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_POSITION_CHANGED:
