@@ -20,7 +20,11 @@ enum ChunkType {
 @export var min_chunk_height: int = 2
 @export var max_chunk_height: int = 7
 
+@export_category("Grass Area Config")
+@export var tree_rate: float = 0.4
+
 @onready var ground_layer: TileMapLayer = $GroundLayer
+@onready var obstacle_layer: TileMapLayer = $ObstacleLayer
 @onready var tile_size: int = ground_layer.tile_set.tile_size.x
 
 # State
@@ -40,17 +44,42 @@ func _process(delta):
 
 func randomize_chunk():
 	next_chunk = randi_range(min_chunk_height, max_chunk_height)
-	next_chunk_type = randi_range(1, 3)
+	next_chunk_type = randi_range(0, 2)
+
+
+func gen_row(cell_row: int, chunk_type: int):
+	# Fill with terrain
+	for i in range(min_col, max_col + 1):
+		ground_layer.set_cell(Vector2i(i, cell_row), 0, Vector2i(0, chunk_type))
+		
+	
+	# Implement obstacles if needed
+	if chunk_type == ChunkType.GRASS:
+		obstacle_layer.set_cell(Vector2i(min_col, cell_row), 0, Vector2i(1, chunk_type))
+		obstacle_layer.set_cell(Vector2i(max_col, cell_row), 0, Vector2i(1, chunk_type))
+		for i in range(min_col + 1, max_col):
+			if randf() < tree_rate:
+				obstacle_layer.set_cell(Vector2i(i, cell_row), 0, Vector2i(1, chunk_type))
+			
+		#obstacle_layer.set_cell(Vector2i(cell_row, min_row - tilemap_height), 0, Vector2i(1, chunk_type))
+	elif chunk_type == ChunkType.ROAD:
+		pass
+	elif chunk_type == ChunkType.WATER:
+		pass
 
 
 func raise_tiles():
 	accum += 1
-	print(accum)
 	if accum == next_chunk:
 		for j in range(accum):
+			# Iterate through rows of accum to gen
 			min_row -= 1
+			
+			# Generate rows
+			gen_row(min_row - tilemap_height, next_chunk_type)
+			
+			# Clear bottom n rows
 			for i in range(min_col, max_col + 1):
-				ground_layer.set_cell(Vector2i(i, min_row - tilemap_height), 0, Vector2i(0, next_chunk_type))
 				ground_layer.set_cell(Vector2i(i, min_row))
 		accum = 0
 		randomize_chunk()

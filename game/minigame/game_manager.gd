@@ -19,16 +19,19 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if player.tile_offset.x != 0:
-		player.position.x += player.tile_offset.x * map.tile_size
-		player.tile_offset.x -= sign(player.tile_offset.x)
+	# Perform X displacement
+	var map_center_disp = roundi((map.max_col - map.min_col) / 2.0)
+	player.tile_offset.x = clampi(player.tile_offset.x, map.min_col + 2 - map_center_disp, map.max_col - map_center_disp)
+	player.position.x = (player.tile_offset.x + map_center_disp) * map.tile_size
+	
+	# Perform Y displacement
 	if player.tile_offset.y != 0:
 		map.position.y -= player.tile_offset.y * map.tile_size
 		if player.tile_offset.y < 0:
 			map.raise_tiles()
-			camera.position.y = minf(player.position.y, camera.position.y - player.tile_offset.y * map.tile_size)
 		else:
 			map.lower_tiles()
+		camera.position.y = minf(player.position.y, camera.position.y - player.tile_offset.y * map.tile_size)
 		player.tile_offset.y -= sign(player.tile_offset.y)
 		
 		
