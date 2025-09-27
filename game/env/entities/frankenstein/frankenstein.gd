@@ -28,7 +28,7 @@ var r: bool = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if not r:
-		engage_frankenstein()
+		#engage_frankenstein()
 		r = true
 		
 	if frankenstein_active:
@@ -57,6 +57,8 @@ func _process(delta):
 		if curr_orientation == F_Orientation.TOPDOWN || curr_orientation == F_Orientation.SIDEWAYS:
 			var v_dist1 = test_axes[2] - test_axes[1]
 			var v_dist2 = test_axes[1] - test_axes[0]
+			print(v_dist1)
+			print(v_dist2)
 			var threshold_1 = abs(fixed_axes[2] - fixed_axes[1])
 			var threshold_2 = abs(fixed_axes[0] - fixed_axes[1])
 			orientation_correct = threshold_1 < padding and threshold_2 < padding and abs(v_dist1 - dist) < padding and abs(v_dist2 - dist) < padding
@@ -86,7 +88,7 @@ func engage_frankenstein():
 	body_window = window_man.env_views[1]
 	leg_window = window_man.env_views[2]
 	
-	curr_orientation = randi_range(0, 4)
+	curr_orientation = randi_range(0, 3)
 	
 	# Sample setup
 	

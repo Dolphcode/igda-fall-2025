@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://vk1r56fcxnq6"]
+[gd_scene load_steps=6 format=3 uid="uid://vk1r56fcxnq6"]
 
+[ext_resource type="Script" uid="uid://jf2crjsrt1bd" path="res://game/env/entities/cerberus/cerberus_manager.gd" id="1_rdqu8"]
 [ext_resource type="Script" uid="uid://bxftpgxlsddi7" path="res://game/env/entities/spinosaurus/spinosaurus_spawner.gd" id="3_bvmqy"]
 [ext_resource type="Script" uid="uid://ccde5lxi3sw56" path="res://game/env/entities/lallorona/lallorona_manager.gd" id="3_hpclf"]
 [ext_resource type="Script" uid="uid://dlkpy13owfsp7" path="res://game/env/entities/frankenstein/frankenstein.gd" id="4_bvmqy"]
@@ -7,6 +8,10 @@
 
 [node name="SubViewport" type="SubViewport"]
 size = Vector2i(1024, 512)
+
+[node name="CerberusManager" type="Node" parent="."]
+script = ExtResource("1_rdqu8")
+metadata/_custom_type_script = "uid://jf2crjsrt1bd"
 
 [node name="SpinosaurusSpawner" type="Node" parent="."]
 script = ExtResource("3_bvmqy")
