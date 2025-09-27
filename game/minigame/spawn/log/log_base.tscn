@@ -8,6 +8,7 @@ size = Vector2(64, 64)
 
 [node name="Log" type="Area2D" groups=["log"]]
 script = ExtResource("1_wyilr")
+speed = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_6edkl")
