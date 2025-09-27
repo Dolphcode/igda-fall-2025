@@ -200,6 +200,7 @@ position = Vector2(-455, 324)
 script = ExtResource("10_685oy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyBounds/LeftDestroyArea2D"]
+position = Vector2(0, -45)
 shape = SubResource("RectangleShape2D_2df8i")
 
 [node name="RightDestroyArea2D" type="Area2D" parent="DestroyBounds"]
