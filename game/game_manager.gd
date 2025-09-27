@@ -21,6 +21,9 @@ func _ready():
 	camera.position = player.position
 	
 	%WindowManager.create_env_view()
+	%WindowManager.create_env_view()
+	%WindowManager.create_env_view()
+	
 	pass # Replace with function body.
 
 

@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://duifkn375bll"]
+[gd_scene load_steps=7 format=3 uid="uid://duifkn375bll"]
 
 [ext_resource type="Script" uid="uid://be3jttu3u70xg" path="res://game/env/window/env_view.gd" id="1_0h7ur"]
+[ext_resource type="Texture2D" uid="uid://b66nly2o1ace8" path="res://icon.svg" id="2_4kqe1"]
+[ext_resource type="Script" uid="uid://b1n208bfvd6ht" path="res://game/env/entities/lallorona/lallorona_instance.gd" id="2_4uuva"]
 
 [sub_resource type="GDScript" id="GDScript_pa2v6"]
 resource_name = "camera_mover"
@@ -17,12 +19,60 @@ func _process(delta):
 	pass
 "
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pdevx"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4kqe1"]
+size = Vector2(128, 128)
+
 [node name="EnvView" type="Window"]
 oversampling_override = 1.0
-position = Vector2i(385, 181)
+position = Vector2i(105, 61)
+size = Vector2i(435, 365)
 script = ExtResource("1_0h7ur")
 screen_fraction = 0.333
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(196, 111)
 script = SubResource("GDScript_pa2v6")
+
+[node name="LaLloronaEntity" type="AnimatableBody2D" parent="." node_paths=PackedStringArray("pjoint", "rbody")]
+unique_name_in_owner = true
+position = Vector2(141, 99)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("2_4uuva")
+pjoint = NodePath("../PinJoint2D")
+rbody = NodePath("../RigidBody2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LaLloronaEntity"]
+shape = SubResource("RectangleShape2D_pdevx")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(142, 156)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(141, 216)
+collision_layer = 0
+collision_mask = 0
+mass = 60.0
+gravity_scale = 6.0
+freeze = true
+angular_damp = 6.706
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("RectangleShape2D_4kqe1")
+
+[node name="Frankenstein" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="Frankenstein"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_4kqe1")
+expand_mode = 2
