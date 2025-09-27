@@ -9,6 +9,7 @@ class_name Spawner
 @export_category("Spawn Config")
 @export var direction: int = 1
 @export var spawnable: PackedScene
+@export var spawner_lower_bound: float
 
 var spawn_time: float = 0
 
@@ -26,4 +27,7 @@ func _process(delta):
 		get_parent().call_deferred("add_child", obj)
 		obj.position = position
 		obj.direction = direction
+		
+	if global_position.y > spawner_lower_bound:
+		queue_free()
 		

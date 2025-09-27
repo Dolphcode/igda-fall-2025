@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://cbx0en01saiji"]
+[gd_scene load_steps=15 format=4 uid="uid://cbx0en01saiji"]
 
 [ext_resource type="Script" uid="uid://qrectqi54117" path="res://game/minigame/game_manager.gd" id="1_q6aue"]
 [ext_resource type="Texture2D" uid="uid://b66nly2o1ace8" path="res://icon.svg" id="1_wap7k"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://kdi7w22lt3ev" path="res://game/env/environment.gd" id="4_jxfoc"]
 [ext_resource type="Texture2D" uid="uid://busdijdlqt0v2" path="res://assets/sprites/tilesets/tilemap.png" id="6_syh38"]
 [ext_resource type="PackedScene" uid="uid://dt85g7fyvmta7" path="res://game/env/spawn/car_spawner.tscn" id="9_2df8i"]
+[ext_resource type="Script" uid="uid://bn2jlo8e17xhl" path="res://game/env/destroy_area.gd" id="10_685oy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q6aue"]
 texture = ExtResource("6_syh38")
@@ -150,6 +151,12 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_q6aue")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2df8i"]
+size = Vector2(50, 3000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_685oy"]
+size = Vector2(2000, 1474)
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_q6aue")
 
@@ -184,3 +191,31 @@ environment = NodePath("../Environment")
 script = ExtResource("4_jxfoc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="DestroyBounds" type="Node2D" parent="."]
+
+[node name="LeftDestroyArea2D" type="Area2D" parent="DestroyBounds"]
+position = Vector2(-192, 324)
+script = ExtResource("10_685oy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyBounds/LeftDestroyArea2D"]
+shape = SubResource("RectangleShape2D_2df8i")
+
+[node name="RightDestroyArea2D" type="Area2D" parent="DestroyBounds"]
+position = Vector2(1344, 324)
+script = ExtResource("10_685oy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyBounds/RightDestroyArea2D"]
+shape = SubResource("RectangleShape2D_2df8i")
+
+[node name="BorromDestroyArea2D" type="Area2D" parent="DestroyBounds"]
+position = Vector2(576, 324)
+script = ExtResource("10_685oy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyBounds/BorromDestroyArea2D"]
+position = Vector2(0, 2209)
+shape = SubResource("RectangleShape2D_685oy")
+
+[connection signal="area_entered" from="DestroyBounds/LeftDestroyArea2D" to="DestroyBounds/LeftDestroyArea2D" method="_on_area_entered"]
+[connection signal="area_entered" from="DestroyBounds/RightDestroyArea2D" to="DestroyBounds/RightDestroyArea2D" method="_on_area_entered"]
+[connection signal="area_entered" from="DestroyBounds/BorromDestroyArea2D" to="DestroyBounds/BorromDestroyArea2D" method="_on_area_entered"]

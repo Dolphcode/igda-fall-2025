@@ -35,9 +35,19 @@ var accum: int = 0
 var next_chunk: int = 0
 var next_chunk_type: int = 0
 
+## The lower bound where spawners should be destroyed
+var spawner_lower_bound: float
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Randomize the next chunk
 	randomize_chunk()
+	
+	# Compute the lower bound where spawners should be killed
+	var pos: Vector2 = obstacle_layer.map_to_local(Vector2i(0, min_row))
+	pos = obstacle_layer.to_global(pos)
+	spawner_lower_bound = pos.y
+	
 	pass # Replace with function body.
 
 
@@ -63,15 +73,14 @@ func gen_row(cell_row: int, chunk_type: int):
 		for i in range(min_col + 1, max_col):
 			if randf() < tree_rate:
 				obstacle_layer.set_cell(Vector2i(i, cell_row), 0, Vector2i(1, chunk_type))
-			
-		#obstacle_layer.set_cell(Vector2i(cell_row, min_row - tilemap_height), 0, Vector2i(1, chunk_type))
+				
 	elif chunk_type == ChunkType.ROAD:
 		var pos: Vector2 = obstacle_layer.map_to_local(Vector2i(max_col, cell_row))
 		pos = to_local(obstacle_layer.to_global(pos))
-		var obj = car_spawner.instantiate()
+		var obj: Spawner = car_spawner.instantiate()
 		call_deferred("add_child", obj)
 		obj.position = pos
-		pass
+		obj.spawner_lower_bound = spawner_lower_bound
 	elif chunk_type == ChunkType.WATER:
 		pass
 
