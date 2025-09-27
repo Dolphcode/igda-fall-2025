@@ -18,6 +18,10 @@ config/icon="res://icon.svg"
 
 window/subwindows/embed_subwindows=false
 
+[global_group]
+
+log=""
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

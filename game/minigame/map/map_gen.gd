@@ -114,3 +114,7 @@ func raise_tiles():
 
 func lower_tiles():
 	accum -= 1
+
+
+func to_tile_pos(g_pos: Vector2) -> Vector2i:
+	return ground_layer.local_to_map(ground_layer.to_local(g_pos))

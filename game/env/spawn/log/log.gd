@@ -2,6 +2,8 @@ extends Area2D
 class_name Log
 
 
+signal on_log_move
+
 var tile_pos: Vector2i
 var body_size: int = 1
 
@@ -32,3 +34,4 @@ func _process(delta):
 		move_time = speed
 		tile_pos.x += direction
 		position.x += direction * tile_size
+		on_log_move.emit()
