@@ -23,6 +23,9 @@ enum ChunkType {
 @export_category("Grass Area Config")
 @export var tree_rate: float = 0.4
 
+@export_category("Road Config")
+@export var car_spawner: PackedScene
+
 @onready var ground_layer: TileMapLayer = $GroundLayer
 @onready var obstacle_layer: TileMapLayer = $ObstacleLayer
 @onready var tile_size: int = ground_layer.tile_set.tile_size.x
@@ -63,6 +66,11 @@ func gen_row(cell_row: int, chunk_type: int):
 			
 		#obstacle_layer.set_cell(Vector2i(cell_row, min_row - tilemap_height), 0, Vector2i(1, chunk_type))
 	elif chunk_type == ChunkType.ROAD:
+		var pos: Vector2 = obstacle_layer.map_to_local(Vector2i(max_col, cell_row))
+		pos = to_local(obstacle_layer.to_global(pos))
+		var obj = car_spawner.instantiate()
+		call_deferred("add_child", obj)
+		obj.position = pos
 		pass
 	elif chunk_type == ChunkType.WATER:
 		pass

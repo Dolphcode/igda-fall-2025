@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctay60bkwe2vt"]
+
+[ext_resource type="Script" uid="uid://bk80rm7bvmib1" path="res://game/env/spawn/cars/car.gd" id="1_wco17"]
+[ext_resource type="Texture2D" uid="uid://b66nly2o1ace8" path="res://icon.svg" id="2_d2jp7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ry280"]
+size = Vector2(64, 64)
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_wco17")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ry280")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_d2jp7")

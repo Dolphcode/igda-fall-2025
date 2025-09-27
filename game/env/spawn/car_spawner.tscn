@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dt85g7fyvmta7"]
+
+[ext_resource type="Script" uid="uid://7necuvjjkf3d" path="res://game/env/spawn/spawner.gd" id="1_6i5xr"]
+[ext_resource type="PackedScene" uid="uid://ctay60bkwe2vt" path="res://game/env/spawn/cars/car_base.tscn" id="2_7jknn"]
+
+[node name="Spawner" type="Node2D"]
+script = ExtResource("1_6i5xr")
+direction = -1
+spawnable = ExtResource("2_7jknn")
+metadata/_custom_type_script = "uid://7necuvjjkf3d"
