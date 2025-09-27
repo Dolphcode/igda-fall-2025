@@ -26,6 +26,9 @@ enum ChunkType {
 @export_category("Road Config")
 @export var car_spawner: PackedScene
 
+@export_category("Water Config")
+@export var log_spawner: PackedScene
+
 @onready var ground_layer: TileMapLayer = $GroundLayer
 @onready var obstacle_layer: TileMapLayer = $ObstacleLayer
 @onready var tile_size: int = ground_layer.tile_set.tile_size.x
@@ -81,8 +84,14 @@ func gen_row(cell_row: int, chunk_type: int):
 		call_deferred("add_child", obj)
 		obj.position = pos
 		obj.spawner_lower_bound = spawner_lower_bound
+		
 	elif chunk_type == ChunkType.WATER:
-		pass
+		var pos: Vector2 = obstacle_layer.map_to_local(Vector2i(max_col, cell_row))
+		pos = to_local(obstacle_layer.to_global(pos))
+		var obj: Spawner = log_spawner.instantiate()
+		call_deferred("add_child", obj)
+		obj.position = pos
+		obj.spawner_lower_bound = spawner_lower_bound
 
 
 func raise_tiles():

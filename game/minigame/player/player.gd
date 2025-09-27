@@ -38,7 +38,6 @@ func _process(delta):
 		next_offset.x += 1
 		next_position.x += 1
 
-	print(tile_position)
 
 	if %Map.obstacle_layer.get_cell_tile_data(next_position) == null:
 		tile_offset = next_offset

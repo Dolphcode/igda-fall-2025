@@ -1,4 +1,5 @@
 extends Area2D
+class_name Car
 
 var direction = 1
 var speed = 10

@@ -21,7 +21,7 @@ func _ready():
 func _process(delta):
 	# Perform X displacement
 	var map_center_disp = roundi((map.max_col - map.min_col) / 2.0)
-	player.tile_offset.x = clampi(player.tile_offset.x, map.min_col + 2 - map_center_disp, map.max_col - map_center_disp)
+	player.tile_offset.x = player.tile_offset.x
 	player.position.x = (player.tile_offset.x + map_center_disp) * map.tile_size
 	
 	# Perform Y displacement
