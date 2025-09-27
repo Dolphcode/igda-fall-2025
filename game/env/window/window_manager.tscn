@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3ysb8aojgk7r"]
+
+[ext_resource type="Script" uid="uid://pubqhkhp3rkg" path="res://game/env/window/window_manager.gd" id="1_75yil"]
+[ext_resource type="PackedScene" uid="uid://duifkn375bll" path="res://game/env/window/env_view.tscn" id="2_x6rmt"]
+
+[node name="WindowManager" type="Node"]
+script = ExtResource("1_75yil")
+env_view_scene = ExtResource("2_x6rmt")
+metadata/_custom_type_script = "uid://pubqhkhp3rkg"

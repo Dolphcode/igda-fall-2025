@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://lh71jjwsoaxx"]
+
+[ext_resource type="Texture2D" uid="uid://b66nly2o1ace8" path="res://icon.svg" id="1_35gdn"]
+[ext_resource type="Script" uid="uid://b8t0o5rrcc8ba" path="res://game/env/entities/spinosaurus/spinosaurus_instance.gd" id="2_s5hi4"]
+
+[node name="Spinosaurus" type="Sprite2D"]
+modulate = Color(0, 1, 1, 1)
+texture = ExtResource("1_35gdn")
+script = ExtResource("2_s5hi4")
