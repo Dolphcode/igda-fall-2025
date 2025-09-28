@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://vk1r56fcxnq6"]
+[gd_scene load_steps=9 format=3 uid="uid://vk1r56fcxnq6"]
 
 [ext_resource type="Script" uid="uid://jf2crjsrt1bd" path="res://game/env/entities/cerberus/cerberus_manager.gd" id="1_rdqu8"]
 [ext_resource type="Script" uid="uid://bxftpgxlsddi7" path="res://game/env/entities/spinosaurus/spinosaurus_spawner.gd" id="3_bvmqy"]
 [ext_resource type="Script" uid="uid://ccde5lxi3sw56" path="res://game/env/entities/lallorona/lallorona_manager.gd" id="3_hpclf"]
 [ext_resource type="Script" uid="uid://dlkpy13owfsp7" path="res://game/env/entities/frankenstein/frankenstein.gd" id="4_bvmqy"]
 [ext_resource type="PackedScene" uid="uid://lh71jjwsoaxx" path="res://game/env/entities/spinosaurus/spinosaurus.tscn" id="4_rdqu8"]
+[ext_resource type="Texture2D" uid="uid://513hgj5t21c4" path="res://assets/sprites/malware/frankhead_tex.png" id="6_a383k"]
+[ext_resource type="Texture2D" uid="uid://r5hs6l10a4m7" path="res://assets/sprites/malware/frankbod_tex.png" id="7_bhqpu"]
+[ext_resource type="Texture2D" uid="uid://bc5irx1k6qw4j" path="res://assets/sprites/malware/frankleg_tex.png" id="8_sjkyr"]
 
 [node name="SubViewport" type="SubViewport"]
 size = Vector2i(1024, 512)
@@ -24,4 +27,7 @@ metadata/_custom_type_script = "uid://ccde5lxi3sw56"
 
 [node name="Frankenstein" type="Node" parent="."]
 script = ExtResource("4_bvmqy")
+head_tex = ExtResource("6_a383k")
+bod_tex = ExtResource("7_bhqpu")
+leg_tex = ExtResource("8_sjkyr")
 metadata/_custom_type_script = "uid://dlkpy13owfsp7"

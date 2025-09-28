@@ -11,6 +11,11 @@ enum F_Orientation {
 @export_category("Difficulty Config")
 @export var spawn_time: float = 15
 
+@export_category("Visuals")
+@export var head_tex: Texture2D
+@export var bod_tex: Texture2D
+@export var leg_tex: Texture2D
+
 # State
 var frankenstein_active: bool = false
 
@@ -21,6 +26,8 @@ var head_window: EnvView
 var body_window: EnvView
 var leg_window: EnvView
 var curr_orientation: F_Orientation
+
+
 
 var spawn_counter: float = 0
 
@@ -79,10 +86,10 @@ func _process(delta):
 		
 
 
-func configure_frankenstein_texture(t: TextureRect, r: float, c: Color):
+func configure_frankenstein_texture(t: TextureRect, r: float, tx: Texture2D):
 	t.pivot_offset = t.size / 2
 	t.rotation = r
-	t.modulate = c
+	t.texture = tx
 
 
 func engage_frankenstein():
@@ -129,9 +136,9 @@ func engage_frankenstein():
 			rotation = deg_to_rad(270)
 		F_Orientation.SIDEWAYS_R:
 			rotation = deg_to_rad(90)
-	configure_frankenstein_texture(head_window.get_node("Frankenstein/TextureRect"), rotation, Color.RED)
-	configure_frankenstein_texture(body_window.get_node("Frankenstein/TextureRect"), rotation, Color.GREEN)
-	configure_frankenstein_texture(leg_window.get_node("Frankenstein/TextureRect"), rotation, Color.BLUE)
+	configure_frankenstein_texture(head_window.get_node("Frankenstein/TextureRect"), rotation, head_tex)
+	configure_frankenstein_texture(body_window.get_node("Frankenstein/TextureRect"), rotation, bod_tex)
+	configure_frankenstein_texture(leg_window.get_node("Frankenstein/TextureRect"), rotation, leg_tex)
 
 
 func disengage_frankenstein():

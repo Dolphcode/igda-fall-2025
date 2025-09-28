@@ -1,14 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://duifkn375bll"]
+[gd_scene load_steps=13 format=3 uid="uid://duifkn375bll"]
 
 [ext_resource type="Script" uid="uid://be3jttu3u70xg" path="res://game/env/window/env_view.gd" id="1_0h7ur"]
 [ext_resource type="Texture2D" uid="uid://b66nly2o1ace8" path="res://icon.svg" id="2_4kqe1"]
 [ext_resource type="Script" uid="uid://b1n208bfvd6ht" path="res://game/env/entities/lallorona/lallorona_instance.gd" id="2_4uuva"]
+[ext_resource type="Texture2D" uid="uid://byvujvctk5s23" path="res://assets/sprites/malware/lalloronabody_tex.png" id="2_pyhty"]
+[ext_resource type="Texture2D" uid="uid://513hgj5t21c4" path="res://assets/sprites/malware/frankhead_tex.png" id="3_0wxq6"]
+[ext_resource type="Texture2D" uid="uid://becb10oy05cnm" path="res://assets/sprites/malware/lalloronahead_tex.png" id="4_ibp4x"]
 [ext_resource type="Script" uid="uid://d4mk4yqdpruuu" path="res://game/env/entities/cerberus/cerberus_instance.gd" id="4_igopw"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pdevx"]
-size = Vector2(128, 128)
+[ext_resource type="Texture2D" uid="uid://cixv32xe0wb42" path="res://assets/sprites/malware/cerberus.png" id="5_e2y68"]
+[ext_resource type="Theme" uid="uid://b2o2kfxqoayfv" path="res://assets/themes/pause_theme.tres" id="6_0wxq6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4kqe1"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pdevx"]
 size = Vector2(128, 128)
 
 [sub_resource type="LabelSettings" id="LabelSettings_4uuva"]
@@ -22,6 +27,24 @@ script = ExtResource("1_0h7ur")
 screen_fraction = 0.333
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+visible = false
+position = Vector2(141, 216)
+collision_layer = 0
+collision_mask = 0
+mass = 60.0
+gravity_scale = 6.0
+freeze = true
+angular_damp = 20.669
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("RectangleShape2D_4kqe1")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(-22, 59)
+scale = Vector2(0.32, 0.32)
+texture = ExtResource("2_pyhty")
 
 [node name="LaLloronaEntity" type="AnimatableBody2D" parent="." node_paths=PackedStringArray("pjoint", "rbody")]
 unique_name_in_owner = true
@@ -37,21 +60,13 @@ death_time = 15.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LaLloronaEntity"]
 shape = SubResource("RectangleShape2D_pdevx")
 
+[node name="Sprite2D" type="Sprite2D" parent="LaLloronaEntity"]
+position = Vector2(4.175, 16.715)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_ibp4x")
+
 [node name="PinJoint2D" type="PinJoint2D" parent="."]
 position = Vector2(142, 156)
-
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-visible = false
-position = Vector2(141, 216)
-collision_layer = 0
-collision_mask = 0
-mass = 60.0
-gravity_scale = 6.0
-freeze = true
-angular_damp = 6.706
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-shape = SubResource("RectangleShape2D_4kqe1")
 
 [node name="Frankenstein" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -65,7 +80,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("2_4kqe1")
+texture = ExtResource("3_0wxq6")
 expand_mode = 2
 
 [node name="Cerberus" type="CanvasLayer" parent="." node_paths=PackedStringArray("labels")]
@@ -81,7 +96,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-texture = ExtResource("2_4kqe1")
+texture = ExtResource("5_e2y68")
+expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Cerberus/TextureRect"]
 layout_mode = 1
@@ -102,6 +118,7 @@ offset_top = 287.0
 offset_right = 435.0
 offset_bottom = 365.0
 size_flags_vertical = 3
+theme = ExtResource("6_0wxq6")
 
 [node name="Label1" type="Label" parent="Cerberus/TextureRect/VBoxContainer/HSeparator/HBoxContainer"]
 layout_mode = 2

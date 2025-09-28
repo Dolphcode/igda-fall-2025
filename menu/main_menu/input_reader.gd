@@ -74,7 +74,7 @@ func submit_command():
 		print_to_ui("	- MOVE DOWN	-> S or DOWN ARROW")
 		print_to_ui("	- MOVE LEFT	-> A or LEFT ARROW")
 		print_to_ui("	- MOVE RIGHT-> D or RIGHT ARROW")
-		print_to_ui("	- PAUSE		-> P")
+		print_to_ui("	- PAUSE		-> ESC")
 	elif input_text.begins_with("EXIT"):
 		get_tree().quit()
 	elif input_text.begins_with("PLAY"):
