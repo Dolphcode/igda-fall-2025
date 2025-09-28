@@ -57,7 +57,7 @@ func _process(delta):
 					continue
 				
 				# Test if we are on this particular log
-				var log_origin: Vector2i = %Map.to_tile_pos(obj.global_position)
+				var log_origin: Vector2i = %Map.to_tile_pos(obj.get_parent().to_global(obj.accum_position))
 				if log_origin.y == next_position.y and (log_origin.x <= next_position.x and log_origin.x + obj.body_size > next_position.x):
 					# Make sure player is on log
 					on_log = true

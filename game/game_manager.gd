@@ -11,6 +11,9 @@ class_name GameManager
 @export_category("Environment Config")
 @export var jumpscares: Array[Texture2D]
 
+@export_category("General Config")
+@export var max_move_steps: int = 2
+
 
 # Onready
 @onready var player: Player = %Player

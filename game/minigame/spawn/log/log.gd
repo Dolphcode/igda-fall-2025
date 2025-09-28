@@ -19,6 +19,10 @@ var body_size: int = 1
 var tile_size: int
 var move_time: float = 0
 
+var accum_position: Vector2
+
+@onready var game_manager: GameManager = get_tree().root.get_node("Game")
+
 func _init():
 	# Select body size, must be done on init so it can be accessed by the spawner
 	body_size = randi_range(min_body_size, max_body_size)
@@ -28,6 +32,9 @@ func _init():
 func _ready():
 	# Initialize time to move
 	move_time = speed
+	
+	# Initialize accum position
+	accum_position = position
 	
 	# Build the log by duplicating the base sprite and positioning correctly
 	tile_size = get_parent().get_node("%Map").tile_size
@@ -45,5 +52,11 @@ func _process(delta):
 	if move_time <= 0:
 		move_time = speed
 		tile_pos.x += direction
-		position.x += direction * tile_size
+		#position.x  += direction * tile_size
+		accum_position.x += direction * tile_size
 		on_log_move.emit()
+	
+	
+	var step = direction * game_manager.max_move_steps * roundi((1 - (move_time / speed)) * game_manager.get_node("%Map").tile_size / game_manager.max_move_steps)
+	position.x = accum_position.x + step
+	position.y = accum_position.y
