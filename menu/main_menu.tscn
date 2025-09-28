@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=3 uid="uid://sht8c2s8gkpq"]
+
+[ext_resource type="FontFile" uid="uid://ceu2m0ur68bnu" path="res://assets/fonts/JetBrainsMonoNL-Regular.ttf" id="1_chmv6"]
+[ext_resource type="Script" uid="uid://g3irro3dms1c" path="res://menu/input_reader.gd" id="2_f5okj"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.033853278, 0.033853278, 0.033853274, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_chmv6")
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "____________________________________________________________________________________________________
+                                      [color=red]  ⠀⠀⠀⠀⠀⣀⣀⣀⠀⠀⠀⠀[/color]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ███ ███  █ ██  █    ███   ███       [color=orange]⠀⠀⠀⣾⣿⣿⣿⣿⣷⣆⠀⠀⠀⠀⠀⠀⣠⣤⣤⣤⣤⣄⡀[/color]
+   █    █  █ █ ██  █   █   █ █       [color=yellow]   ⠀⣠⣾⡟⢿⣿⣿⣿⣿⣿⡄⠀⠀⢀⣴⢿⣿⣿⣿⣿⣿⣿[/color]
+   ████ █  █ █ █ █ █   █   █ ████     [color=green]  ⣾⠛⠃⠀⢸⣿⠋⢻⣿⣿⣧⠀⢀⣾⣿⢾⢻⡏⣿⣹⡇⡿[/color]
+      █ ███  █ █ █ █   █   █    █      [color=blue] ⠀⠀⠀⢀⣽⡇⠀⢸⣿⣿⡿⣷⣿⣿⣿⣿⣿⣷⣿⣾⣿⣿[/color]
+      █ █    █ █  ██   █   █    █ ----- ⠀[color=purple]⠀⠀⠈⠛⠀⠀⠈⢿⣿⣟⣿⣽⣿⡻⡿⡿⣿⣿⣿⣿⣿[/color]
+   ███  █    █ █  ██ █  ███  ███  .ORUS ⠀⠀⠀⠀[color=pink]⠀⠀⠀⠀⠈⢻⣿⣿⣾⣿⡶⣐⠠⡠⡾⠙⠹⢿[/color]
+                                  -----
+____________________________________________________________________________________________________
+"
+fit_content = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("1_chmv6")
+bbcode_enabled = true
+fit_content = true
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_chmv6")
+text = "treterterter"
+
+[node name="InputReader" type="Node" parent="." node_paths=PackedStringArray("input_label", "output_label")]
+script = ExtResource("2_f5okj")
+toggle_time = 0.2
+input_label = NodePath("../ColorRect/MarginContainer/VBoxContainer/Label")
+output_label = NodePath("../ColorRect/MarginContainer/VBoxContainer/RichTextLabel2")
+line_count = 15
