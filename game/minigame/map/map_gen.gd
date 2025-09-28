@@ -21,23 +21,29 @@ enum ChunkType {
 ## The index of the rightmost column of the tilemap
 @export var max_col: int = 32
 
-@export_category("Chunk Config")
-## The minimum of rows for a randomly generated chunk of terrain
-@export var min_chunk_height: int = 2
-## The maximum number of rows for a randomly generated chunk of terrain
-@export var max_chunk_height: int = 7
-
 @export_category("Grass Area Config")
 ## The random rate at which trees are spawned when a grass chunk is generated
 @export var tree_rate: float = 0.4
+## The minimum of rows for a randomly generated chunk of grass terrain
+@export var min_chunk_height_grass: int = 2
+## The maximum number of rows for a randomly generated chunk of grass terrain
+@export var max_chunk_height_grass: int = 7
 
 @export_category("Road Config")
 ## The spawner object responsible for spawning cars on the road
 @export var car_spawner: PackedScene
+## half of the minimum number of rows for road
+@export var min_num_roads: int = 1
+## half the maximum number of rows for road
+@export var max_num_roads: int = 2
 
 @export_category("Water Config")
 ## The spawner object responsible for spawning logs on the road
 @export var log_spawner: PackedScene
+## The minimum of rows for a randomly generated chunk of water terrain
+@export var min_chunk_height_water: int = 2
+## The maximum of rows for a randomly generated chunk of water terrain
+@export var max_chunk_height_water: int = 4
 
 @onready var ground_layer: TileMapLayer = $GroundLayer
 @onready var obstacle_layer: TileMapLayer = $ObstacleLayer
@@ -77,7 +83,15 @@ func randomize_chunk():
 		elif last_chunk == 1 and next_chunk_type == 1:
 			next_chunk_type = 2
 		last_chunk = next_chunk_type
-	next_chunk = randi_range(min_chunk_height, max_chunk_height)
+		
+	if next_chunk_type == 0:
+		next_chunk = randi_range(min_chunk_height_grass, max_chunk_height_grass)
+	elif next_chunk_type == 1:
+		next_chunk = randi_range(min_num_roads, max_num_roads) * 2
+	elif next_chunk_type == 2:
+		next_chunk = randi_range(min_chunk_height_water, max_chunk_height_water)
+	
+	
 	
 
 

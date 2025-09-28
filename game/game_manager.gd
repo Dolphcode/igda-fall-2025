@@ -46,7 +46,11 @@ func _process(delta):
 	player.tile_offset.x = player.tile_offset.x
 	player.position.x = (player.tile_offset.x + map_center_disp) * map.tile_size
 	if player.on_log:
-		player.position.x += player.curr_log.position.x - player.curr_log.accum_position.x
+		if player.curr_log == null or player.curr_log.is_queued_for_deletion():
+			player.curr_log = null
+			player.on_log = false
+		else:
+			player.position.x += player.curr_log.position.x - player.curr_log.accum_position.x
 	
 	# Perform Y displacement
 	if player.tile_offset.y != 0:
