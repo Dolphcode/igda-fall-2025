@@ -76,7 +76,7 @@ func randomize_chunk():
 			next_chunk_type += 1
 		elif last_chunk == 1 and next_chunk_type == 1:
 			next_chunk_type = 2
-			
+		last_chunk = next_chunk_type
 	next_chunk = randi_range(min_chunk_height, max_chunk_height)
 	
 
