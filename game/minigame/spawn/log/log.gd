@@ -11,11 +11,11 @@ signal on_log_move
 @export_category("Log Config")
 ## The tile position of the origin of the log (the leftmost)
 @export var tile_pos: Vector2i
-@export var min_body_size: int = 1
+@export var min_body_size: int = 2
 @export var max_body_size: int = 4
 
 # State
-var body_size: int = 1
+var body_size: int = 2
 var tile_size: int
 var move_time: float = 0
 
@@ -43,6 +43,10 @@ func _ready():
 		var sprite_copy = base_sprite.duplicate()
 		call_deferred("add_child", sprite_copy)
 		sprite_copy.position.x = i * tile_size
+		if i < body_size - 1:
+			sprite_copy.frame = 1
+		else:
+			sprite_copy.frame = 2
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

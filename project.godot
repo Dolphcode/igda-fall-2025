@@ -14,7 +14,7 @@ config/name="SpinOS.orus"
 run/main_scene="uid://sht8c2s8gkpq"
 config/features=PackedStringArray("4.5", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
-config/icon="res://icon.svg"
+config/icon="uid://dulykyqsfx8gp"
 
 [display]
 

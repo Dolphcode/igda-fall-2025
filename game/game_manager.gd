@@ -68,6 +68,8 @@ func _process(delta):
 
 ## Call this function to trigger the lose game
 func lose_game(reason: String):
+	print(reason + " is kill")
+	
 	%Environment.process_mode = PROCESS_MODE_DISABLED
 	%Map.process_mode = PROCESS_MODE_DISABLED
 	%WindowManager.process_mode = PROCESS_MODE_DISABLED

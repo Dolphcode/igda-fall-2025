@@ -39,9 +39,11 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_left"):
 		next_offset.x -= 1
 		next_position.x -= 1
+		self.flip_h = false
 	if Input.is_action_just_pressed("ui_right"):
 		next_offset.x += 1
 		next_position.x += 1
+		self.flip_h = true
 	
 	# Only perform collision checks if we are changing tiles
 	if next_offset != tile_offset:
