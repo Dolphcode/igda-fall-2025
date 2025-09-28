@@ -48,6 +48,7 @@ collision_mask = 0
 script = ExtResource("2_4uuva")
 pjoint = NodePath("../PinJoint2D")
 rbody = NodePath("../RigidBody2D")
+death_time = 15.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LaLloronaEntity"]
 shape = SubResource("RectangleShape2D_pdevx")

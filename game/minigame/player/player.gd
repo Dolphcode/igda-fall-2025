@@ -43,8 +43,6 @@ func _process(delta):
 		next_offset.x += 1
 		next_position.x += 1
 	
-	print(on_log)
-	print(next_position)
 	# Only perform collision checks if we are changing tiles
 	if next_offset != tile_offset:
 	

@@ -21,7 +21,7 @@ func _process(delta):
 		lifetime -= delta
 	modulate.a += delta / 255.0 * haunt_rate
 	if modulate.a >= 1.0:
-		get_tree().root.get_node("Game").lose_game()
+		get_tree().root.get_node("Game").lose_game("Spinosaurus")
 		
 	if lifetime <= 0:
 		queue_free()

@@ -39,7 +39,7 @@ func _process(delta):
 		if instance_active:
 			death_counter += delta
 			if death_counter >= death_time:
-				get_tree().root.get_node("Game").lose_game()
+				get_tree().root.get_node("Game").lose_game("La Llorona")
 			
 			if shake_count >= shakes:
 				deactivate_instance()

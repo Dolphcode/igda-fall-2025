@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [display]
 
 window/size/resizable=false
-window/size/always_on_top=true
 window/subwindows/embed_subwindows=false
 
 [global_group]
