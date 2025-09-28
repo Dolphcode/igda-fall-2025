@@ -95,8 +95,11 @@ func print_to_ui(txt: String):
 
 
 func _input(event):
-	if event is InputEventKey:
-		if event.keycode == KEY_ENTER and event.pressed:
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_ENTER:
 			submit_command()
-		elif ((event.keycode >= 65 and event.keycode <= 65 + 25) or char(event.key_label) == " ") and event.pressed:
+		elif event.keycode == KEY_BACKSPACE:
+			if len(input_text) > 0:
+				input_text = input_text.left(len(input_text) - 1)
+		elif ((event.keycode >= 65 and event.keycode <= 65 + 25) or char(event.key_label) == " "):
 			input_text += char(event.key_label)
