@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://cbx0en01saiji"]
+[gd_scene load_steps=30 format=4 uid="uid://cbx0en01saiji"]
 
 [ext_resource type="Script" uid="uid://qrectqi54117" path="res://game/game_manager.gd" id="1_q6aue"]
 [ext_resource type="Script" uid="uid://bok6yxdeyovd4" path="res://game/minigame/player/player.gd" id="2_jxfoc"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://df5umx4b8tsxf" path="res://assets/sprites/tilesets/tile_elems.png" id="11_romgs"]
 [ext_resource type="Texture2D" uid="uid://dp4b4a2tr64k8" path="res://assets/sprites/spinosaurus.png" id="12_romgs"]
 [ext_resource type="Script" uid="uid://d2k53eje2rqvf" path="res://game/minigame/lose_area.gd" id="14_ytqdp"]
+[ext_resource type="Theme" uid="uid://b2o2kfxqoayfv" path="res://assets/themes/pause_theme.tres" id="17_cdxgq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q6aue"]
 texture = ExtResource("10_wlpmb")
@@ -502,6 +503,59 @@ shape = SubResource("RectangleShape2D_685oy")
 
 [node name="WindowManager" parent="." instance=ExtResource("11_6edkl")]
 unique_name_in_owner = true
+
+[node name="Pause" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="Pause"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 43.2
+offset_top = 24.3
+offset_right = -331.20026
+offset_bottom = -186.29993
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(388.8, 218.7)
+color = Color(0.03529412, 0.03529412, 0.03529412, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Pause/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("17_cdxgq")
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause/ColorRect/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pause/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "PAUSE"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Pause/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "CONTINUE"
+
+[node name="Button2" type="Button" parent="Pause/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "RESTART"
+
+[node name="Button3" type="Button" parent="Pause/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "EXIT"
 
 [connection signal="area_entered" from="Camera2D/CameraBoundLoseArea" to="Camera2D/CameraBoundLoseArea" method="_on_area_entered"]
 [connection signal="area_entered" from="DestroyBounds/LeftDestroyArea2D" to="DestroyBounds/LeftDestroyArea2D" method="_on_area_entered"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://sht8c2s8gkpq"]
 
 [ext_resource type="FontFile" uid="uid://ceu2m0ur68bnu" path="res://assets/fonts/JetBrainsMonoNL-Regular.ttf" id="1_chmv6"]
-[ext_resource type="Script" uid="uid://g3irro3dms1c" path="res://menu/input_reader.gd" id="2_f5okj"]
+[ext_resource type="Script" uid="uid://g3irro3dms1c" path="res://menu/main_menu/input_reader.gd" id="2_f5okj"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3

@@ -24,9 +24,9 @@ var lose = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if not OS.is_debug_build():
-		get_window().content_scale_size = Vector2i(576, 324)
-		get_window().size = Vector2i(576, 324)
-		get_window().content_scale_factor = 0.5
+		get_window().content_scale_size = Vector2i(864, 486)
+		get_window().size = Vector2i(864, 486) 
+		get_window().content_scale_factor = 0.75
 		
 	camera.position = player.position
 	
