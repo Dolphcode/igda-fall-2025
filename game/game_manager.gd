@@ -22,6 +22,12 @@ class_name GameManager
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if not OS.is_debug_build():
+		print("RESIZE!")
+		get_window().content_scale_size = Vector2i(576, 324)
+		get_window().size = Vector2i(576, 324)
+		get_window().content_scale_factor = 0.5
+		
 	camera.position = player.position
 	
 	%WindowManager.create_env_view()
