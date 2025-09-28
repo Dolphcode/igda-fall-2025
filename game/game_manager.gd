@@ -81,3 +81,10 @@ func lose_game(reason: String):
 	for env in %WindowManager.env_views:
 		env.get_node("Jumpscare").visible = true
 		env.get_node("Jumpscare/TextureRect").texture = jumpscares.pick_random()
+
+
+func restart_game():
+	get_tree().change_scene_to_file("res://game/minigame/minigame.tscn")
+
+func return_to_main():
+	get_tree().change_scene_to_file("res://menu/main_menu/main_menu.tscn")
