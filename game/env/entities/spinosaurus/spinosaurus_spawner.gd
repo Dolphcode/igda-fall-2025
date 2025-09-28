@@ -1,8 +1,8 @@
 extends Node
-
+## Handles spawning spinosaurus
 class_name SpinosaurusSpawner
 
-
+## The instance of the spinosaurus spawned by the spawner
 @export var spinosaurus_inst: PackedScene
 
 ## Time between spawn attempts
@@ -30,4 +30,3 @@ func _process(delta):
 		spinosaurus.scale = Vector2(scale, scale)
 		spinosaurus.position = view.camera.position
 		get_parent().call_deferred("add_child", spinosaurus)
-		
