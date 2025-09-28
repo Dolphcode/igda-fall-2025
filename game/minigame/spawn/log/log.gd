@@ -52,11 +52,9 @@ func _process(delta):
 	if move_time <= 0:
 		move_time = speed
 		tile_pos.x += direction
-		#position.x  += direction * tile_size
 		accum_position.x += direction * tile_size
 		on_log_move.emit()
 	
-	
-	var step = direction * game_manager.max_move_steps * roundi((1 - (move_time / speed)) * game_manager.get_node("%Map").tile_size / game_manager.max_move_steps)
-	position.x = accum_position.x + step
+	var step = direction * game_manager.max_move_steps * roundi(((move_time / speed) - 0.5) * game_manager.get_node("%Map").tile_size / game_manager.max_move_steps)
+	position.x = accum_position.x - step
 	position.y = accum_position.y

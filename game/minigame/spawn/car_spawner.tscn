@@ -5,6 +5,9 @@
 
 [node name="Spawner" type="Node2D"]
 script = ExtResource("1_6i5xr")
+spawn_time_min = 2.0
+spawn_time_max = 5.0
 direction = -1
 spawnable = ExtResource("2_7jknn")
+speed = 0.2
 metadata/_custom_type_script = "uid://7necuvjjkf3d"

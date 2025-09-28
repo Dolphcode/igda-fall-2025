@@ -94,7 +94,7 @@ func gen_row(cell_row: int, chunk_type: int) -> void:
 		obj.position = pos
 		obj.spawner_lower_bound = spawner_lower_bound
 		
-		obj.speed = 5.0
+		obj.speed = [0.01, 0.02, 0.04, 0.05].pick_random()
 		
 	elif chunk_type == ChunkType.WATER:
 		var l_or_r = randi_range(0, 1)

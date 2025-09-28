@@ -42,7 +42,9 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_right"):
 		next_offset.x += 1
 		next_position.x += 1
-
+	
+	print(on_log)
+	print(next_position)
 	# Only perform collision checks if we are changing tiles
 	if next_offset != tile_offset:
 	
@@ -50,7 +52,6 @@ func _process(delta):
 			# This for loop will identify if we are stepping onto a log, thus we set
 			# on_log to false tempirarily and only set it back to true in this frame
 			# if we do step onto a log
-			on_log = false
 			for obj in %Map.get_children():
 				# Skip non-log objects
 				if not obj.is_in_group("log"):

@@ -169,6 +169,7 @@ process_priority = 1
 script = ExtResource("1_q6aue")
 camera_speed = 5.0
 jumpscares = Array[Texture2D]([ExtResource("2_wlpmb"), ExtResource("3_romgs"), ExtResource("4_ytqdp")])
+max_move_steps = 4
 
 [node name="Environment" parent="." instance=ExtResource("3_o43ct")]
 unique_name_in_owner = true

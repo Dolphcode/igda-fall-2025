@@ -3,10 +3,14 @@ extends Spawnable
 ## the player to trigger game over.
 class_name Car
 
+var accum: float = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position.x += self.direction * self.speed
+	accum += delta
+	if accum >= speed:
+		accum = 0
+		position.x += self.direction * get_tree().root.get_node("Game").max_move_steps
 
 
 func _on_body_entered(body):
