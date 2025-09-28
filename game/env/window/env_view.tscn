@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://duifkn375bll"]
+[gd_scene load_steps=14 format=3 uid="uid://duifkn375bll"]
 
 [ext_resource type="Script" uid="uid://be3jttu3u70xg" path="res://game/env/window/env_view.gd" id="1_0h7ur"]
 [ext_resource type="Texture2D" uid="uid://b66nly2o1ace8" path="res://icon.svg" id="2_4kqe1"]
@@ -16,13 +16,16 @@ size = Vector2(128, 128)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pdevx"]
 size = Vector2(128, 128)
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_pyhty"]
+color = Color(0, 0, 0, 0)
+
 [sub_resource type="LabelSettings" id="LabelSettings_4uuva"]
-font_size = 50
+font_size = 45
 
 [node name="EnvView" type="Window"]
 oversampling_override = 1.0
 position = Vector2i(105, 61)
-size = Vector2i(435, 365)
+size = Vector2i(430, 365)
 script = ExtResource("1_0h7ur")
 screen_fraction = 0.333
 
@@ -87,7 +90,7 @@ expand_mode = 2
 unique_name_in_owner = true
 visible = false
 script = ExtResource("4_igopw")
-labels = [NodePath("TextureRect/VBoxContainer/HSeparator/HBoxContainer/Label1"), NodePath("TextureRect/VBoxContainer/HSeparator/HBoxContainer/Label2"), NodePath("TextureRect/VBoxContainer/HSeparator/HBoxContainer/Label3")]
+labels = [NodePath("TextureRect/VBoxContainer/HBoxContainer/Label1"), NodePath("TextureRect/VBoxContainer/HBoxContainer/Label2"), NodePath("TextureRect/VBoxContainer/HBoxContainer/Label3")]
 
 [node name="TextureRect" type="TextureRect" parent="Cerberus"]
 anchors_preset = 15
@@ -111,37 +114,38 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.68
+theme_override_styles/separator = SubResource("StyleBoxLine_pyhty")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Cerberus/TextureRect/VBoxContainer/HSeparator"]
-layout_mode = 0
-offset_top = 287.0
-offset_right = 435.0
-offset_bottom = 365.0
+[node name="HBoxContainer" type="HBoxContainer" parent="Cerberus/TextureRect/VBoxContainer"]
+layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("6_0wxq6")
 
-[node name="Label1" type="Label" parent="Cerberus/TextureRect/VBoxContainer/HSeparator/HBoxContainer"]
+[node name="Label1" type="Label" parent="Cerberus/TextureRect/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
 size_flags_vertical = 5
+theme_override_font_sizes/font_size = 10
 text = "A"
 label_settings = SubResource("LabelSettings_4uuva")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="Cerberus/TextureRect/VBoxContainer/HSeparator/HBoxContainer"]
+[node name="Label2" type="Label" parent="Cerberus/TextureRect/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
 size_flags_vertical = 5
+theme_override_font_sizes/font_size = 10
 text = "A"
 label_settings = SubResource("LabelSettings_4uuva")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label3" type="Label" parent="Cerberus/TextureRect/VBoxContainer/HSeparator/HBoxContainer"]
+[node name="Label3" type="Label" parent="Cerberus/TextureRect/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
 size_flags_vertical = 5
+theme_override_font_sizes/font_size = 10
 text = "A"
 label_settings = SubResource("LabelSettings_4uuva")
 horizontal_alignment = 1
