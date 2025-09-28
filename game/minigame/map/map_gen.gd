@@ -97,14 +97,14 @@ func randomize_chunk():
 
 ## Generates the next row based on the type of tile the row is
 ## TODO: Copy row to bottom area so that we can teleport the map up past a certain
-##		 point to prevent overflow. Not super necessary though.
-func gen_row(cell_row: int, chunk_type: int) -> void:
-	# Fill with terrain
-	for i in range(min_col, max_col + 1):
-		ground_layer.set_cell(Vector2i(i, cell_row), 0, Vector2i(0, chunk_type))
-	
+##		 point to prevent overflow. Not super necessary though
+## The row number relative is used specifically for ROAD.
+func gen_row(cell_row: int, chunk_type: int, row_num_relative: int) -> void:
 	# Implement obstacles if needed
 	if chunk_type == ChunkType.GRASS:
+		for i in range(min_col, max_col + 1):
+			ground_layer.set_cell(Vector2i(i, cell_row), 0, Vector2i(randi_range(0, 3), chunk_type))
+		
 		obstacle_layer.set_cell(Vector2i(min_col, cell_row), 0, Vector2i(1, chunk_type))
 		obstacle_layer.set_cell(Vector2i(max_col, cell_row), 0, Vector2i(1, chunk_type))
 		for i in range(min_col + 1, max_col):
@@ -112,6 +112,16 @@ func gen_row(cell_row: int, chunk_type: int) -> void:
 				obstacle_layer.set_cell(Vector2i(i, cell_row), 0, Vector2i(1, chunk_type))
 				
 	elif chunk_type == ChunkType.ROAD:
+		for i in range(min_col, max_col + 1):
+			if i % 2 == 0 and row_num_relative % 2 == 0:
+				ground_layer.set_cell(Vector2i(i, cell_row), 0, Vector2i(2, chunk_type))
+			elif i % 2 == 0 and row_num_relative % 2 == 1:
+				ground_layer.set_cell(Vector2i(i, cell_row), 0, Vector2i(0, chunk_type))
+			elif i % 2 == 1 and row_num_relative % 2 == 0:
+				ground_layer.set_cell(Vector2i(i, cell_row), 0, Vector2i(3, chunk_type))
+			elif i % 2 == 1 and row_num_relative % 2 == 1:
+				ground_layer.set_cell(Vector2i(i, cell_row), 0, Vector2i(1, chunk_type))
+		
 		var l_or_r = randi_range(0, 1)
 		var spawn_x = max_col if l_or_r == 0 else min_col
 		var dir = -1 if l_or_r == 0 else 1
@@ -127,6 +137,9 @@ func gen_row(cell_row: int, chunk_type: int) -> void:
 		obj.speed = [0.01, 0.02, 0.04, 0.05].pick_random()
 		
 	elif chunk_type == ChunkType.WATER:
+		for i in range(min_col, max_col + 1):
+			ground_layer.set_cell(Vector2i(i, cell_row), 0, Vector2i(0, chunk_type))
+		
 		var l_or_r = randi_range(0, 1)
 		var spawn_x = max_col + 1 if l_or_r == 0 else min_col - 1
 		var dir = -1 if l_or_r == 0 else 1
@@ -152,7 +165,7 @@ func raise_tiles() -> void:
 			min_row -= 1
 			
 			# Generate rows
-			gen_row(min_row - tilemap_height, next_chunk_type)
+			gen_row(min_row - tilemap_height, next_chunk_type, j)
 			
 			# Clear bottom n rows
 			for i in range(min_col, max_col + 1):

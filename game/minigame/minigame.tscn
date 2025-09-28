@@ -1,7 +1,6 @@
 [gd_scene load_steps=23 format=4 uid="uid://cbx0en01saiji"]
 
 [ext_resource type="Script" uid="uid://qrectqi54117" path="res://game/game_manager.gd" id="1_q6aue"]
-[ext_resource type="Texture2D" uid="uid://b66nly2o1ace8" path="res://icon.svg" id="1_wap7k"]
 [ext_resource type="Script" uid="uid://bok6yxdeyovd4" path="res://game/minigame/player/player.gd" id="2_jxfoc"]
 [ext_resource type="Texture2D" uid="uid://3jiisxsne10d" path="res://assets/death/haru_shrunk.jpg" id="2_wlpmb"]
 [ext_resource type="PackedScene" uid="uid://vk1r56fcxnq6" path="res://game/env/environment.tscn" id="3_o43ct"]
@@ -15,6 +14,7 @@
 [ext_resource type="Script" uid="uid://bn2jlo8e17xhl" path="res://game/minigame/destroy_area.gd" id="10_685oy"]
 [ext_resource type="Texture2D" uid="uid://dr5qxit3m8lhy" path="res://assets/sprites/tilesets/ground_tiles.png" id="10_wlpmb"]
 [ext_resource type="PackedScene" uid="uid://b3ysb8aojgk7r" path="res://game/env/window/window_manager.tscn" id="11_6edkl"]
+[ext_resource type="Texture2D" uid="uid://dp4b4a2tr64k8" path="res://assets/sprites/spinosaurus.png" id="12_romgs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q6aue"]
 texture = ExtResource("10_wlpmb")
@@ -350,7 +350,7 @@ tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_romgs")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6edkl"]
-size = Vector2(128, 32)
+size = Vector2(56, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2df8i"]
 size = Vector2(50, 3000)
@@ -390,8 +390,8 @@ tile_set = SubResource("TileSet_ytqdp")
 [node name="Player" type="Sprite2D" parent="." groups=["player"]]
 unique_name_in_owner = true
 position = Vector2(576, 324)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_wap7k")
+texture = ExtResource("12_romgs")
+hframes = 3
 script = ExtResource("2_jxfoc")
 
 [node name="Area2D" type="Area2D" parent="Player"]
