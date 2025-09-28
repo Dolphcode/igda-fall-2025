@@ -11,8 +11,9 @@ config_version=5
 [application]
 
 config/name="SpinOS.orus"
-run/main_scene="uid://cbx0en01saiji"
+run/main_scene="uid://sht8c2s8gkpq"
 config/features=PackedStringArray("4.5", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://icon.svg"
 
 [display]
@@ -28,4 +29,5 @@ player=""
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
 2d/snap/snap_2d_transforms_to_pixel=true

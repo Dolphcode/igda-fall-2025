@@ -13,6 +13,11 @@ var toggle_counter: float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if not OS.is_debug_build():
+		get_window().content_scale_size = Vector2i(576, 324) * 2
+		get_window().size = Vector2i(576, 324) * 2
+		get_window().content_scale_factor = 1.0
+	
 	if randi_range(0, 4096) == 4096:
 		print_to_ui("[STATUS]: [color=purple]Congrats you got the [/color][color=yellow]shiny[/color][color=purple] status message[/color]")
 	else:
