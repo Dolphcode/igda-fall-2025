@@ -26,7 +26,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	# We can only
 	var next_position: Vector2i = tile_position
 	var next_offset: Vector2i = tile_offset

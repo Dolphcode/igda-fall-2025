@@ -109,7 +109,7 @@ func gen_row(cell_row: int, chunk_type: int, row_num_relative: int) -> void:
 		obstacle_layer.set_cell(Vector2i(max_col, cell_row), 0, Vector2i(1, chunk_type))
 		for i in range(min_col + 1, max_col):
 			if randf() < tree_rate:
-				obstacle_layer.set_cell(Vector2i(i, cell_row), 0, Vector2i(1, chunk_type))
+				obstacle_layer.set_cell(Vector2i(i, cell_row), 0, Vector2i(randi_range(0, 3), chunk_type))
 				
 	elif chunk_type == ChunkType.ROAD:
 		for i in range(min_col, max_col + 1):

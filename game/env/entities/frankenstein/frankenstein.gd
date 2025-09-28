@@ -113,7 +113,7 @@ func engage_frankenstein():
 	body_window.frankenstein_occupied = true
 	leg_window.frankenstein_occupied = true
 	
-	curr_orientation = randi_range(0, 3)
+	curr_orientation = randi_range(0, 3) as F_Orientation
 	
 	head_window.get_node("Frankenstein").visible = true
 	body_window.get_node("Frankenstein").visible = true

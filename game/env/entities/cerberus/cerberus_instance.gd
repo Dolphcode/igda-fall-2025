@@ -12,16 +12,6 @@ var instance_active: bool = false
 var characters: Array = [char(0), char(0), char(0)]
 var accum: int = 0
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
 ## Activates this cerberus instance, the instance deals with reading and deactivating
 ## after that point.
 func activate_instance():

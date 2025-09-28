@@ -24,6 +24,7 @@ window/subwindows/embed_subwindows=false
 
 log=""
 player=""
+shredder=""
 
 [rendering]
 

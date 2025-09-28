@@ -5,8 +5,11 @@ class_name Car
 
 var accum: float = 0
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if direction == 1:
+		$Sprite2D.flip_h = true
 	accum += delta
 	if accum >= speed:
 		accum = 0

@@ -1,24 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://duifkn375bll"]
+[gd_scene load_steps=8 format=3 uid="uid://duifkn375bll"]
 
 [ext_resource type="Script" uid="uid://be3jttu3u70xg" path="res://game/env/window/env_view.gd" id="1_0h7ur"]
 [ext_resource type="Texture2D" uid="uid://b66nly2o1ace8" path="res://icon.svg" id="2_4kqe1"]
 [ext_resource type="Script" uid="uid://b1n208bfvd6ht" path="res://game/env/entities/lallorona/lallorona_instance.gd" id="2_4uuva"]
 [ext_resource type="Script" uid="uid://d4mk4yqdpruuu" path="res://game/env/entities/cerberus/cerberus_instance.gd" id="4_igopw"]
-
-[sub_resource type="GDScript" id="GDScript_pa2v6"]
-resource_name = "camera_mover"
-script/source = "extends Camera2D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pdevx"]
 size = Vector2(128, 128)
@@ -37,7 +22,6 @@ script = ExtResource("1_0h7ur")
 screen_fraction = 0.333
 
 [node name="Camera2D" type="Camera2D" parent="."]
-script = SubResource("GDScript_pa2v6")
 
 [node name="LaLloronaEntity" type="AnimatableBody2D" parent="." node_paths=PackedStringArray("pjoint", "rbody")]
 unique_name_in_owner = true

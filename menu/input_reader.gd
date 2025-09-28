@@ -63,10 +63,18 @@ func submit_command():
 		clear_ui()
 	elif input_text.begins_with("HELP"):
 		print_to_ui("HELP MENU:")
-		print_to_ui("	- HELP	 -> Prints the help menu (duh I guess lol)")
-		print_to_ui("	- CLEAR	 -> Clears the console")
-		print_to_ui("	- PLAY	 -> Boots the main program (plays the game I'm being fancy)")
-		print_to_ui("	- EXIT	 -> Closes the program")
+		print_to_ui("	- HELP	 	-> Prints the help menu (duh I guess lol)")
+		print_to_ui("	- CONTROLS	-> Prints the controls for the game")
+		print_to_ui("	- CLEAR	 	-> Clears the console")
+		print_to_ui("	- PLAY	 	-> Boots the main program (plays the game I'm being fancy)")
+		print_to_ui("	- EXIT	 	-> Closes the program")
+	elif input_text.begins_with("CONTROLS"):
+		print_to_ui("CONTROLS MENU:")
+		print_to_ui("	- MOVE UP	-> W or UP ARROW")
+		print_to_ui("	- MOVE DOWN	-> S or DOWN ARROW")
+		print_to_ui("	- MOVE LEFT	-> A or LEFT ARROW")
+		print_to_ui("	- MOVE RIGHT-> D or RIGHT ARROW")
+		print_to_ui("	- PAUSE		-> P")
 	elif input_text.begins_with("EXIT"):
 		get_tree().quit()
 	elif input_text.begins_with("PLAY"):
