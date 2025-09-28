@@ -405,12 +405,14 @@ size = Vector2(388, 3000)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_685oy"]
 size = Vector2(2000, 1474)
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("lose_screen", "error_label")]
 process_priority = 1
 script = ExtResource("1_q6aue")
 camera_speed = 5.0
 jumpscares = Array[Texture2D]([ExtResource("2_wlpmb"), ExtResource("3_romgs"), ExtResource("4_ytqdp"), ExtResource("5_v71pb")])
 max_move_steps = 4
+lose_screen = NodePath("Lose")
+error_label = NodePath("Lose/ColorRect/MarginContainer/VBoxContainer/Label2")
 
 [node name="Environment" parent="." instance=ExtResource("3_o43ct")]
 unique_name_in_owner = true
@@ -506,6 +508,56 @@ shape = SubResource("RectangleShape2D_685oy")
 [node name="WindowManager" parent="." instance=ExtResource("11_6edkl")]
 unique_name_in_owner = true
 
+[node name="Lose" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Lose"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.03137255, 0.15294118, 0.9607843, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Lose/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("17_cdxgq")
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Lose/ColorRect/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Lose/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "An error has occurred.
+"
+
+[node name="Label2" type="Label" parent="Lose/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "ERROR CODE:"
+
+[node name="Label3" type="Label" parent="Lose/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "
+Please select one of the following options:"
+
+[node name="Button" type="Button" parent="Lose/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "REBOOT APPLICATION (RESTART)"
+
+[node name="Button2" type="Button" parent="Lose/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "EXIT TO MENU"
+
 [node name="Pause" type="CanvasLayer" parent="."]
 process_mode = 3
 visible = false
@@ -567,6 +619,8 @@ text = "RETURN TO MENU"
 [connection signal="area_entered" from="DestroyBounds/RightLoseArea2D" to="DestroyBounds/RightLoseArea2D" method="_on_area_entered"]
 [connection signal="area_entered" from="DestroyBounds/RightDestroyArea2D" to="DestroyBounds/RightDestroyArea2D" method="_on_area_entered"]
 [connection signal="area_entered" from="DestroyBounds/BorromDestroyArea2D" to="DestroyBounds/BorromDestroyArea2D" method="_on_area_entered"]
+[connection signal="pressed" from="Lose/ColorRect/MarginContainer/VBoxContainer/Button" to="Pause" method="restart"]
+[connection signal="pressed" from="Lose/ColorRect/MarginContainer/VBoxContainer/Button2" to="Pause" method="exit"]
 [connection signal="pressed" from="Pause/ColorRect/MarginContainer/VBoxContainer/Button" to="Pause" method="resume"]
 [connection signal="pressed" from="Pause/ColorRect/MarginContainer/VBoxContainer/Button2" to="Pause" method="restart"]
 [connection signal="pressed" from="Pause/ColorRect/MarginContainer/VBoxContainer/Button3" to="Pause" method="exit"]

@@ -14,6 +14,10 @@ class_name GameManager
 @export_category("General Config")
 @export var max_move_steps: int = 2
 
+@export_category("Lose Screen Config")
+@export var lose_screen: CanvasLayer
+@export var error_label: Label
+
 var lose = false
 
 # Onready
@@ -70,7 +74,8 @@ func _process(delta):
 
 ## Call this function to trigger the lose game
 func lose_game(reason: String):
-	print(reason + " is kill")
+	lose_screen.visible = true
+	error_label.text = "ERROR CODE: " + reason
 	lose = true	
 	
 	%Environment.process_mode = PROCESS_MODE_DISABLED

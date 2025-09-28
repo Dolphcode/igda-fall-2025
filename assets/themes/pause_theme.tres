@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=7 format=3 uid="uid://b2o2kfxqoayfv"]
 
-[ext_resource type="FontFile" uid="uid://ceu2m0ur68bnu" path="res://assets/fonts/JetBrainsMonoNL-Regular.ttf" id="1_v0erq"]
+[ext_resource type="FontFile" uid="uid://dgerbhhwd1ogc" path="res://assets/fonts/ModernDOS8x16.ttf" id="2_lf3lo"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lf3lo"]
 
@@ -17,7 +17,7 @@ Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
 Button/colors/font_focus_color = Color(0, 1, 1, 1)
 Button/colors/font_hover_color = Color(1, 1, 0, 1)
 Button/font_sizes/font_size = 40
-Button/fonts/font = ExtResource("1_v0erq")
+Button/fonts/font = ExtResource("2_lf3lo")
 Button/icons/icon = null
 Button/styles/disabled = SubResource("StyleBoxEmpty_lf3lo")
 Button/styles/focus = SubResource("StyleBoxEmpty_geyec")
@@ -25,6 +25,5 @@ Button/styles/hover = SubResource("StyleBoxEmpty_ni036")
 Button/styles/normal = SubResource("StyleBoxEmpty_osa7g")
 Button/styles/pressed = SubResource("StyleBoxEmpty_qoaqm")
 Label/colors/font_outline_color = Color(1, 1, 1, 1)
-Label/constants/outline_size = 7
 Label/font_sizes/font_size = 40
-Label/fonts/font = ExtResource("1_v0erq")
+Label/fonts/font = ExtResource("2_lf3lo")
