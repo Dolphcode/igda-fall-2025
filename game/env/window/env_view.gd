@@ -44,5 +44,6 @@ func _process(delta):
 	curr_vel = (camera.position - last_pos) / delta
 	accel = (curr_vel - last_vel / delta).length()
 	accel_accum = (accel_accum * 0.25) + (accel * 0.75)
-	if accel_accum > 4e5:
-		print("SHAKING")
+	if accel_accum > 5e5:
+		if %LaLloronaEntity.instance_active:
+			%LaLloronaEntity.shake_count += 1
