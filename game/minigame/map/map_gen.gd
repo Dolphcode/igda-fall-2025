@@ -47,6 +47,7 @@ enum ChunkType {
 var accum: int = 0
 var next_chunk: int = 0
 var next_chunk_type: int = 0
+var last_chunk: int = -1
 
 ## The lower bound where spawners should be destroyed
 var spawner_lower_bound: float
@@ -66,8 +67,18 @@ func _ready():
 
 ## Generates a random chunk of ground
 func randomize_chunk():
+	if last_chunk == -1:
+		next_chunk_type = randi_range(0, 2)
+		last_chunk = next_chunk_type
+	else:
+		next_chunk_type = randi_range(0, 1)
+		if last_chunk == 0:
+			next_chunk_type += 1
+		elif last_chunk == 1 and next_chunk_type == 1:
+			next_chunk_type = 2
+			
 	next_chunk = randi_range(min_chunk_height, max_chunk_height)
-	next_chunk_type = randi_range(0, 2)
+	
 
 
 ## Generates the next row based on the type of tile the row is
@@ -103,7 +114,7 @@ func gen_row(cell_row: int, chunk_type: int) -> void:
 		
 	elif chunk_type == ChunkType.WATER:
 		var l_or_r = randi_range(0, 1)
-		var spawn_x = max_col if l_or_r == 0 else min_col
+		var spawn_x = max_col + 1 if l_or_r == 0 else min_col - 1
 		var dir = -1 if l_or_r == 0 else 1
 		
 		var pos: Vector2 = obstacle_layer.map_to_local(Vector2i(spawn_x, cell_row))
