@@ -8,6 +8,8 @@ class_name EnvView
 @export_category("Capture Config")
 @export var environment: SubViewport
 
+var frankenstein_occupied: bool = false
+
 # Onready vars
 @onready var camera: Camera2D = $Camera2D
 
@@ -47,3 +49,11 @@ func _process(delta):
 	if accel_accum > 5e5:
 		if %LaLloronaEntity.instance_active:
 			%LaLloronaEntity.shake_count += 1
+
+
+func la_llorona_active():
+	return %LaLloronaEntity.instance_active
+
+
+func cerberus_active():
+	return %Cerberus.instance_active

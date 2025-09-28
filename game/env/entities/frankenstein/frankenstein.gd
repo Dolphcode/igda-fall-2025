@@ -8,7 +8,10 @@ enum F_Orientation {
 	SIDEWAYS_R
 }
 
+@export_category("Difficulty Config")
+@export var spawn_time: float = 15
 
+# State
 var frankenstein_active: bool = false
 
 # Onready
@@ -19,17 +22,21 @@ var body_window: EnvView
 var leg_window: EnvView
 var curr_orientation: F_Orientation
 
+var spawn_counter: float = 0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
 
-var r: bool = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if not r:
-		#engage_frankenstein()
-		r = true
+	if not frankenstein_active:
+		spawn_counter += delta
+		if spawn_counter >= spawn_time:
+			# Attempt to engage frankenstein
+			engage_frankenstein()
+			spawn_counter = 0
 		
 	if frankenstein_active:
 		var orientation_correct: bool = false
@@ -79,16 +86,34 @@ func configure_frankenstein_texture(t: TextureRect, r: float, c: Color):
 
 
 func engage_frankenstein():
-	frankenstein_active = true
-	
 	window_man.env_views.shuffle()
-	head_window = window_man.env_views[0]
-	body_window = window_man.env_views[1]
-	leg_window = window_man.env_views[2]
+	var free_windows = 0
+	for i in window_man.env_views:
+		if i.cerberus_active():
+			continue
+		else:
+			if free_windows == 0:
+				head_window = i
+				free_windows += 1
+			elif free_windows == 1:
+				body_window = i
+				free_windows += 1
+			else:
+				leg_window = i
+				free_windows += 1
+				break
+	
+	# Failure to find enough windows for frankenstein to occupy
+	if free_windows != 3:
+		return
+	
+	# Occupy windows
+	frankenstein_active = true
+	head_window.frankenstein_occupied = true
+	body_window.frankenstein_occupied = true
+	leg_window.frankenstein_occupied = true
 	
 	curr_orientation = randi_range(0, 3)
-	
-	# Sample setup
 	
 	head_window.get_node("Frankenstein").visible = true
 	body_window.get_node("Frankenstein").visible = true
@@ -110,6 +135,9 @@ func engage_frankenstein():
 
 
 func disengage_frankenstein():
+	head_window.frankenstein_occupied = false
+	body_window.frankenstein_occupied = false
+	leg_window.frankenstein_occupied = false
 	head_window.get_node("Frankenstein").visible = false
 	body_window.get_node("Frankenstein").visible = false
 	leg_window.get_node("Frankenstein").visible = false

@@ -27,6 +27,9 @@ func _ready():
 	%WindowManager.create_env_view()
 	%WindowManager.create_env_view()
 	%WindowManager.create_env_view()
+	%WindowManager.create_env_view()
+	%WindowManager.create_env_view()
+	%WindowManager.create_env_view()
 	
 	pass # Replace with function body.
 

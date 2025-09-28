@@ -84,6 +84,7 @@ texture = ExtResource("2_4kqe1")
 expand_mode = 2
 
 [node name="Cerberus" type="CanvasLayer" parent="." node_paths=PackedStringArray("labels")]
+unique_name_in_owner = true
 visible = false
 script = ExtResource("4_igopw")
 labels = [NodePath("TextureRect/VBoxContainer/HSeparator/HBoxContainer/Label1"), NodePath("TextureRect/VBoxContainer/HSeparator/HBoxContainer/Label2"), NodePath("TextureRect/VBoxContainer/HSeparator/HBoxContainer/Label3")]
