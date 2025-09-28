@@ -9,6 +9,7 @@ class_name GameManager
 @export var camera_speed: float = 20
 
 @export_category("Environment Config")
+@export var jumpscares: Array[Texture2D]
 
 
 # Onready
@@ -46,3 +47,14 @@ func _process(delta):
 		
 	# Move camera
 	camera.position.y -= delta * camera_speed
+
+
+## Call this function to trigger the lose game
+func lose_game():
+	%Environment.process_mode = PROCESS_MODE_DISABLED
+	%Map.process_mode = PROCESS_MODE_DISABLED
+	%WindowManager.process_mode = PROCESS_MODE_DISABLED
+	
+	for env in %WindowManager.env_views:
+		env.get_node("Jumpscare").visible = true
+		env.get_node("Jumpscare/TextureRect").texture = jumpscares.pick_random()

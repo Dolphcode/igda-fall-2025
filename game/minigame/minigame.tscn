@@ -1,11 +1,14 @@
-[gd_scene load_steps=18 format=4 uid="uid://cbx0en01saiji"]
+[gd_scene load_steps=20 format=4 uid="uid://cbx0en01saiji"]
 
 [ext_resource type="Script" uid="uid://qrectqi54117" path="res://game/game_manager.gd" id="1_q6aue"]
 [ext_resource type="Texture2D" uid="uid://b66nly2o1ace8" path="res://icon.svg" id="1_wap7k"]
 [ext_resource type="Script" uid="uid://bok6yxdeyovd4" path="res://game/minigame/player/player.gd" id="2_jxfoc"]
+[ext_resource type="Texture2D" uid="uid://3jiisxsne10d" path="res://assets/death/haru_shrunk.jpg" id="2_wlpmb"]
 [ext_resource type="PackedScene" uid="uid://vk1r56fcxnq6" path="res://game/env/environment.tscn" id="3_o43ct"]
+[ext_resource type="Texture2D" uid="uid://cxabhwql5uc45" path="res://assets/death/ringsebastian_shrunk.jpg" id="3_romgs"]
 [ext_resource type="Script" uid="uid://6ky7kg04jmyc" path="res://game/minigame/map/map_gen.gd" id="3_ry280"]
 [ext_resource type="Script" uid="uid://kdi7w22lt3ev" path="res://game/env/environment.gd" id="4_jxfoc"]
+[ext_resource type="Texture2D" uid="uid://ba4v2qcjd4w5m" path="res://assets/death/sebkuna_shrunk.jpg" id="4_ytqdp"]
 [ext_resource type="PackedScene" uid="uid://cvslcagsg2q5x" path="res://game/minigame/spawn/log_spawner.tscn" id="6_6edkl"]
 [ext_resource type="Texture2D" uid="uid://busdijdlqt0v2" path="res://assets/sprites/tilesets/tilemap.png" id="6_syh38"]
 [ext_resource type="PackedScene" uid="uid://dt85g7fyvmta7" path="res://game/minigame/spawn/car_spawner.tscn" id="9_2df8i"]
@@ -152,22 +155,20 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_q6aue")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6edkl"]
+size = Vector2(128, 128)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2df8i"]
 size = Vector2(50, 3000)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_685oy"]
 size = Vector2(2000, 1474)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6edkl"]
-size = Vector2(128, 128)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t6p3w"]
-size = Vector2(128, 128)
-
 [node name="Game" type="Node2D"]
 process_priority = 1
 script = ExtResource("1_q6aue")
 camera_speed = 5.0
+jumpscares = Array[Texture2D]([ExtResource("2_wlpmb"), ExtResource("3_romgs"), ExtResource("4_ytqdp")])
 
 [node name="Environment" parent="." instance=ExtResource("3_o43ct")]
 unique_name_in_owner = true
@@ -191,12 +192,17 @@ tile_set = SubResource("TileSet_ry280")
 tile_map_data = PackedByteArray("AAARAPv/AAACAAAAAAARAPz/AAACAAAAAAARAP3/AAACAAAAAAARAP7/AAACAAAAAAARAP//AAACAAAAAAARAAAAAAACAAAAAAARAAEAAAACAAAAAAARAAIAAAACAAAAAAARAAMAAAACAAAAAAARAAQAAAACAAAAAAARAAUAAAACAAAAAAARAAYAAAACAAAAAAARAAcAAAACAAAAAAARAAgAAAACAAAAAAARAAkAAAACAAAAAAARAAoAAAACAAAAAAARAAsAAAACAAAAAAARAAwAAAACAAAAAAARAA0AAAACAAAAAAARAA4AAAACAAAAAAARAA8AAAACAAAAAAD///v/AAACAAAAAAD///z/AAACAAAAAAD///3/AAACAAAAAAD///7/AAACAAAAAAD/////AAACAAAAAAD//wAAAAACAAAAAAD//wEAAAACAAAAAAD//wIAAAACAAAAAAD//wMAAAACAAAAAAD//wQAAAACAAAAAAD//wUAAAACAAAAAAD//wYAAAACAAAAAAD//wcAAAACAAAAAAD//wgAAAACAAAAAAD//wkAAAACAAAAAAD//woAAAACAAAAAAD//wsAAAACAAAAAAD//wwAAAACAAAAAAD//w0AAAACAAAAAAD//w4AAAACAAAAAAA=")
 tile_set = SubResource("TileSet_ry280")
 
-[node name="Player" type="Sprite2D" parent="."]
+[node name="Player" type="Sprite2D" parent="." groups=["player"]]
 unique_name_in_owner = true
 position = Vector2(576, 324)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_wap7k")
 script = ExtResource("2_jxfoc")
+
+[node name="Area2D" type="Area2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
+shape = SubResource("RectangleShape2D_6edkl")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -227,25 +233,6 @@ shape = SubResource("RectangleShape2D_685oy")
 
 [node name="WindowManager" parent="." instance=ExtResource("11_6edkl")]
 unique_name_in_owner = true
-
-[node name="Node" type="Node" parent="."]
-
-[node name="AnimatableBody2D" type="AnimatableBody2D" parent="Node"]
-position = Vector2(141, 99)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/AnimatableBody2D"]
-shape = SubResource("RectangleShape2D_6edkl")
-
-[node name="PinJoint2D" type="PinJoint2D" parent="Node"]
-position = Vector2(142, 156)
-node_a = NodePath("../AnimatableBody2D")
-node_b = NodePath("../RigidBody2D")
-
-[node name="RigidBody2D" type="RigidBody2D" parent="Node"]
-position = Vector2(141, 216)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/RigidBody2D"]
-shape = SubResource("RectangleShape2D_t6p3w")
 
 [connection signal="area_entered" from="DestroyBounds/LeftDestroyArea2D" to="DestroyBounds/LeftDestroyArea2D" method="_on_area_entered"]
 [connection signal="area_entered" from="DestroyBounds/RightDestroyArea2D" to="DestroyBounds/RightDestroyArea2D" method="_on_area_entered"]

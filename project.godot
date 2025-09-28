@@ -21,6 +21,7 @@ window/subwindows/embed_subwindows=false
 [global_group]
 
 log=""
+player=""
 
 [rendering]
 

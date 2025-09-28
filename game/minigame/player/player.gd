@@ -75,17 +75,19 @@ func _process(delta):
 						curr_log.on_log_move.connect(_on_log_move_time)
 					break
 		else:
-			# Attempt to disconnect log node since if we aren't stepping on a potential water tile
-			# We cannot possibly be stepping onto a log
-			on_log = false
-			if curr_log != null and not curr_log.is_queued_for_deletion():
-				curr_log.on_log_move.disconnect(_on_log_move_time)
-				curr_log = null
-			
 			# Evaluate other possible states
 			if %Map.obstacle_layer.get_cell_tile_data(next_position) == null:
 				tile_offset = next_offset
 				tile_position = next_position
+				
+				# If a move is successful
+				# Attempt to disconnect log node since if we aren't stepping on a potential water tile
+				# We cannot possibly be stepping onto a log
+				on_log = false
+				if curr_log != null and not curr_log.is_queued_for_deletion():
+					curr_log.on_log_move.disconnect(_on_log_move_time)
+					curr_log = null
+				
 
 
 func _on_log_move_time() -> void:

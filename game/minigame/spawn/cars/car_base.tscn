@@ -15,3 +15,5 @@ shape = SubResource("RectangleShape2D_ry280")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_d2jp7")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
