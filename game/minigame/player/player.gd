@@ -30,17 +30,17 @@ func _process(_delta):
 	# We can only
 	var next_position: Vector2i = tile_position
 	var next_offset: Vector2i = tile_offset
-	if Input.is_action_just_pressed("ui_up"):
+	if Input.is_action_just_pressed("up"):
 		next_offset.y -= 1
 		next_position.y -= 1
-	if Input.is_action_just_pressed("ui_down"):
+	if Input.is_action_just_pressed("down"):
 		next_offset.y += 1
 		next_position.y += 1
-	if Input.is_action_just_pressed("ui_left"):
+	if Input.is_action_just_pressed("left"):
 		next_offset.x -= 1
 		next_position.x -= 1
 		self.flip_h = false
-	if Input.is_action_just_pressed("ui_right"):
+	if Input.is_action_just_pressed("right"):
 		next_offset.x += 1
 		next_position.x += 1
 		self.flip_h = true
