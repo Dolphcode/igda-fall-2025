@@ -13,6 +13,7 @@ class_name GameManager
 
 @export_category("General Config")
 @export var max_move_steps: int = 2
+@export var restart_game_scene: String = "res://game/minigame/minigame.tscn"
 
 @export_category("Lose Screen Config")
 @export var lose_screen: CanvasLayer
@@ -89,7 +90,7 @@ func lose_game(reason: String):
 
 
 func restart_game():
-	get_tree().change_scene_to_file("res://game/minigame/minigame.tscn")
+	get_tree().change_scene_to_file(restart_game_scene)
 
 func return_to_main():
 	get_tree().change_scene_to_file("res://menu/main_menu/main_menu.tscn")

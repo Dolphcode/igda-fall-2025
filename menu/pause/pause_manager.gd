@@ -1,7 +1,7 @@
 extends CanvasLayer
 
-
 @onready var game: GameManager = get_tree().root.get_node("Game")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
