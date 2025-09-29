@@ -22,6 +22,10 @@ enum ChunkType {
 @export var max_col: int = 32
 
 @export_category("Grass Area Config")
+## The maximum number of non-grass chunks before a grass chunk is forced
+@export var non_grass_max: int = 2
+## Disables the leniency factor forcing more grass tiles
+@export var disable_grass_nerf: bool = false
 ## The random rate at which trees are spawned when a grass chunk is generated
 @export var tree_rate: float = 0.4
 ## The minimum of rows for a randomly generated chunk of grass terrain
@@ -54,6 +58,7 @@ var accum: int = 0
 var next_chunk: int = 0
 var next_chunk_type: int = 0
 var last_chunk: int = -1
+var non_grass_counter: int = 0
 
 ## The lower bound where spawners should be destroyed
 var spawner_lower_bound: float
@@ -73,16 +78,25 @@ func _ready():
 
 ## Generates a random chunk of ground
 func randomize_chunk():
-	if last_chunk == -1:
-		next_chunk_type = randi_range(0, 2)
-		last_chunk = next_chunk_type
+	if non_grass_counter < non_grass_max or disable_grass_nerf:
+		if last_chunk == -1:
+			next_chunk_type = randi_range(0, 2)
+			last_chunk = next_chunk_type
+		else:
+			next_chunk_type = randi_range(0, 1)
+			if last_chunk == 0:
+				next_chunk_type += 1
+			elif last_chunk == 1 and next_chunk_type == 1:
+				next_chunk_type = 2
+			last_chunk = next_chunk_type
 	else:
-		next_chunk_type = randi_range(0, 1)
-		if last_chunk == 0:
-			next_chunk_type += 1
-		elif last_chunk == 1 and next_chunk_type == 1:
-			next_chunk_type = 2
-		last_chunk = next_chunk_type
+		next_chunk_type = 0
+		last_chunk = 0
+		
+	if next_chunk_type != 0:
+		non_grass_counter += 1
+	else:
+		non_grass_counter = 0
 		
 	if next_chunk_type == 0:
 		next_chunk = randi_range(min_chunk_height_grass, max_chunk_height_grass)
@@ -90,10 +104,6 @@ func randomize_chunk():
 		next_chunk = randi_range(min_num_roads, max_num_roads) * 2
 	elif next_chunk_type == 2:
 		next_chunk = randi_range(min_chunk_height_water, max_chunk_height_water)
-	
-	
-	
-
 
 ## Generates the next row based on the type of tile the row is
 ## TODO: Copy row to bottom area so that we can teleport the map up past a certain
