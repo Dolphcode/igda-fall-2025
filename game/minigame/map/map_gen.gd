@@ -48,6 +48,10 @@ enum ChunkType {
 @export var min_chunk_height_water: int = 2
 ## The maximum of rows for a randomly generated chunk of water terrain
 @export var max_chunk_height_water: int = 4
+## Force flip when generating a log row with the same speed as the last one
+@export var force_flip_same_speed: bool = true
+## Random log speeds
+@export var random_log_speeds: Array[float] = [0.25, 0.5, 0.75, 1, 1.25]
 
 @onready var ground_layer: TileMapLayer = $GroundLayer
 @onready var obstacle_layer: TileMapLayer = $ObstacleLayer
@@ -59,6 +63,9 @@ var next_chunk: int = 0
 var next_chunk_type: int = 0
 var last_chunk: int = -1
 var non_grass_counter: int = 0
+
+var last_log_speed: float = -1 # Impossible init value
+var last_log_direction: int = 2 # Impossible init value
 
 ## The lower bound where spawners should be destroyed
 var spawner_lower_bound: float
@@ -153,13 +160,20 @@ func gen_row(cell_row: int, chunk_type: int, row_num_relative: int) -> void:
 		var l_or_r = randi_range(0, 1)
 		var spawn_x = max_col + 1 if l_or_r == 0 else min_col - 1
 		var dir = -1 if l_or_r == 0 else 1
+		var picked_speed = random_log_speeds.pick_random()
+		
+		# Force logs to either be different speeds or directions
+		if force_flip_same_speed and dir == last_log_direction and picked_speed == last_log_speed:
+			dir = -dir
+		last_log_speed = picked_speed
+		last_log_direction = dir
 		
 		var pos: Vector2 = obstacle_layer.map_to_local(Vector2i(spawn_x, cell_row))
 		pos = to_local(obstacle_layer.to_global(pos))
 		var obj: Spawner = log_spawner.instantiate()
 		call_deferred("add_child", obj)
 		obj.position = pos
-		obj.speed = [0.25, 0.5, 0.75, 1, 1.25].pick_random()
+		obj.speed = picked_speed
 		obj.spawner_lower_bound = spawner_lower_bound
 		obj.direction = dir
 
