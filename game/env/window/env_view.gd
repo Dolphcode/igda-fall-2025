@@ -19,8 +19,7 @@ var curr_vel: Vector2 = Vector2.ZERO
 var accel: float = 0
 var accel_accum: float = 0
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+func _init():
 	# Get screen parameters
 	var main_screen: int = DisplayServer.get_primary_screen()
 	var screen_size: Vector2i = DisplayServer.screen_get_size(main_screen)
@@ -32,8 +31,12 @@ func _ready():
 	self.minimize_disabled = true
 	self.maximize_disabled = true
 	self.always_on_top = true
-	self.world_2d = environment.world_2d
 	
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	self.world_2d = environment.world_2d
 	last_pos = camera.position
 
 
