@@ -84,8 +84,14 @@ func submit_command():
 		else:
 			var arg = input_text.split(" ")[1]
 			match arg:
+				"HUGE":
+					get_tree().change_scene_to_file("res://game/alt_games/minigame_huge.tscn")
+				"MIN":
+					get_tree().change_scene_to_file("res://game/alt_games/minigame_min.tscn")
+				"MAX":
+					get_tree().change_scene_to_file("res://game/alt_games/minigame_max.tscn")
 				"ALPHA":
-					get_tree().change_scene_to_file("res://game/minigame/minigame_alpha.tscn")
+					get_tree().change_scene_to_file("res://game/alt_games/minigame_alpha.tscn")
 				_:
 					get_tree().change_scene_to_file("res://game/minigame/minigame.tscn")
 	else:
