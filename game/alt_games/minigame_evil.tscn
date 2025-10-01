@@ -1,11 +1,13 @@
-[gd_scene load_steps=33 format=4 uid="uid://c3ycdoaploj75"]
+[gd_scene load_steps=35 format=4 uid="uid://c3ycdoaploj75"]
 
 [ext_resource type="Script" uid="uid://qrectqi54117" path="res://game/game_manager.gd" id="1_g53dc"]
 [ext_resource type="Texture2D" uid="uid://3jiisxsne10d" path="res://assets/death/haru_shrunk.jpg" id="2_826ky"]
 [ext_resource type="Texture2D" uid="uid://cxabhwql5uc45" path="res://assets/death/ringsebastian_shrunk.jpg" id="3_yqc0p"]
 [ext_resource type="Texture2D" uid="uid://ba4v2qcjd4w5m" path="res://assets/death/sebkuna_shrunk.jpg" id="4_yklub"]
 [ext_resource type="Texture2D" uid="uid://cw4v2y5byx4cx" path="res://assets/death/linmanuevil.png" id="5_661ek"]
+[ext_resource type="Texture2D" uid="uid://cufwnq6g2dqyj" path="res://assets/death/babbitbabbit.png" id="6_083e2"]
 [ext_resource type="PackedScene" uid="uid://vk1r56fcxnq6" path="res://game/env/environment.tscn" id="6_m273o"]
+[ext_resource type="Texture2D" uid="uid://gubquxyk06gw" path="res://assets/death/oni.jpg" id="7_2fbqt"]
 [ext_resource type="Script" uid="uid://kdi7w22lt3ev" path="res://game/env/environment.gd" id="7_6m1pq"]
 [ext_resource type="PackedScene" uid="uid://bd7j880asop2s" path="res://game/env/entities/spinosaurus/spinosaurus_evil.tscn" id="8_4puf8"]
 [ext_resource type="Script" uid="uid://6ky7kg04jmyc" path="res://game/minigame/map/map_gen.gd" id="8_5dvnd"]
@@ -82,7 +84,7 @@ size = Vector2(2000, 1474)
 process_priority = 1
 script = ExtResource("1_g53dc")
 camera_speed = 5.0
-jumpscares = Array[Texture2D]([ExtResource("2_826ky"), ExtResource("3_yqc0p"), ExtResource("4_yklub"), ExtResource("5_661ek")])
+jumpscares = Array[Texture2D]([ExtResource("2_826ky"), ExtResource("3_yqc0p"), ExtResource("4_yklub"), ExtResource("5_661ek"), ExtResource("6_083e2"), ExtResource("7_2fbqt")])
 max_move_steps = 4
 restart_game_scene = "res://game/alt_games/minigame_evil.tscn"
 lose_screen = NodePath("Lose")

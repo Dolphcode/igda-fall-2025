@@ -23,7 +23,7 @@ func _ready():
 	else:
 		print_to_ui("[STATUS]: Program run [color=green]SUCCESSFUL[/color]")
 	print_to_ui("OS Detected: [color=cyan]" + OS.get_distribution_name() + "[/color]")
-	print_to_ui("SpinOS.orus [Version 0.0.2]")
+	print_to_ui("SpinOS.orus [Version 0.0.3]")
 	print_to_ui("Thank you for playing! Type [b][color=pink]\"HELP\"[/color][/b] for a list of commands")
 
 
