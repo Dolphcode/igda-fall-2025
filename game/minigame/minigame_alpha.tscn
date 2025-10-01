@@ -87,6 +87,18 @@ error_label = NodePath("Lose/ColorRect/MarginContainer/VBoxContainer/Label2")
 unique_name_in_owner = true
 script = ExtResource("7_kybcp")
 
+[node name="CerberusManager" parent="Environment" index="0"]
+entity_active = true
+
+[node name="SpinosaurusSpawner" parent="Environment" index="1"]
+entity_active = true
+
+[node name="LaLloronaManager" parent="Environment" index="2"]
+entity_active = true
+
+[node name="Frankenstein" parent="Environment" index="3"]
+entity_active = true
+
 [node name="Map" type="Node2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(32, 32)
@@ -295,3 +307,5 @@ text = "RETURN TO MENU"
 [connection signal="pressed" from="Pause/ColorRect/MarginContainer/VBoxContainer/Button" to="Pause" method="resume"]
 [connection signal="pressed" from="Pause/ColorRect/MarginContainer/VBoxContainer/Button2" to="Pause" method="restart"]
 [connection signal="pressed" from="Pause/ColorRect/MarginContainer/VBoxContainer/Button3" to="Pause" method="exit"]
+
+[editable path="Environment"]

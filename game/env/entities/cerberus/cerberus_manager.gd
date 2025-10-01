@@ -1,4 +1,4 @@
-extends Node
+extends Entity
 class_name CerberusManager
 
 @export_category("Difficulty Config")
@@ -15,7 +15,7 @@ func _ready():
 
 var r = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _ent_process(delta):
 	spawn_counter += delta
 	if spawn_counter >= spawn_time:
 		spawn_counter = 0

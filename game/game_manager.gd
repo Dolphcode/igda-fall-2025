@@ -19,6 +19,13 @@ class_name GameManager
 @export var lose_screen: CanvasLayer
 @export var error_label: Label
 
+@export_category("Progression Config")
+@export var progression_enabled: bool = true
+@export var init_num_windows: int = 6
+@export var min_time_per_progression: float = 10
+@export var max_time_per_progression: float = 20
+@export var progression_order: Array[String]
+
 var lose = false
 
 # Onready

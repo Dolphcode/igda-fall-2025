@@ -1,5 +1,5 @@
 extends Node
-
+## PLEASE DON'T LOOK AT THIS THIS IS SHIT CODE
 @export var toggle_time: float = 0.1
 
 @export var input_label: Label
@@ -23,7 +23,7 @@ func _ready():
 	else:
 		print_to_ui("[STATUS]: Program run [color=green]SUCCESSFUL[/color]")
 	print_to_ui("OS Detected: [color=cyan]" + OS.get_distribution_name() + "[/color]")
-	print_to_ui("SpinOS.orus [Version 0.0.1]")
+	print_to_ui("SpinOS.orus [Version 0.0.2]")
 	print_to_ui("Thank you for playing! Type [b][color=pink]\"HELP\"[/color][/b] for a list of commands")
 
 
@@ -78,12 +78,16 @@ func submit_command():
 	elif input_text.begins_with("EXIT"):
 		get_tree().quit()
 	elif input_text.begins_with("PLAY"):
-		var arg = input_text.split(" ")[1]
-		match arg:
-			"ALPHA":
-				get_tree().change_scene_to_file("res://game/minigame/minigame_alpha.tscn")
-			_:
-				get_tree().change_scene_to_file("res://game/minigame/minigame.tscn")
+		var inputs = input_text.split(" ")
+		if len(inputs) <= 1:
+			get_tree().change_scene_to_file("res://game/minigame/minigame.tscn")
+		else:
+			var arg = input_text.split(" ")[1]
+			match arg:
+				"ALPHA":
+					get_tree().change_scene_to_file("res://game/minigame/minigame_alpha.tscn")
+				_:
+					get_tree().change_scene_to_file("res://game/minigame/minigame.tscn")
 	else:
 		print_to_ui(input_text)
 	input_text = ""

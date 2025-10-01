@@ -1,4 +1,4 @@
-extends Node
+extends Entity
 class_name Frankenstein
 
 enum F_Orientation {
@@ -37,7 +37,7 @@ func _ready():
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _ent_process(delta):
 	if not frankenstein_active:
 		spawn_counter += delta
 		if spawn_counter >= spawn_time:

@@ -1,4 +1,4 @@
-extends Node
+extends Entity
 class_name LaLloronaManager
 
 
@@ -13,7 +13,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _ent_process(delta):
 	timer += delta
 	if timer >= 10:
 		timer = 0

@@ -1,4 +1,4 @@
-extends Node
+extends Entity
 ## Handles spawning spinosaurus
 class_name SpinosaurusSpawner
 
@@ -20,7 +20,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _ent_process(delta):
 	tt_spawn_att -= delta
 	if tt_spawn_att <= 0:
 		tt_spawn_att = spawn_time
