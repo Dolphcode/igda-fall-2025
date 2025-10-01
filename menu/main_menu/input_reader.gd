@@ -84,6 +84,8 @@ func submit_command():
 		else:
 			var arg = input_text.split(" ")[1]
 			match arg:
+				"EVIL":
+					get_tree().change_scene_to_file("res://game/alt_games/minigame_evil.tscn")
 				"HUGE":
 					get_tree().change_scene_to_file("res://game/alt_games/minigame_huge.tscn")
 				"MIN":

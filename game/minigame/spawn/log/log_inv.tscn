@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0l7lupq6a2im"]
+
+[ext_resource type="Script" uid="uid://cmcjhskcvq08a" path="res://game/minigame/spawn/log/log.gd" id="1_l5knw"]
+[ext_resource type="Texture2D" uid="uid://csj0vmfbju0c2" path="res://assets/sprites/inverted/log_inv.png" id="2_l5knw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6edkl"]
+size = Vector2(64, 64)
+
+[node name="Log" type="Area2D" groups=["log"]]
+process_priority = -1
+script = ExtResource("1_l5knw")
+speed = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6edkl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_l5knw")
+hframes = 3

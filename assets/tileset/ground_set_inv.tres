@@ -1,0 +1,27 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://d4i5b56fdldx5"]
+
+[ext_resource type="Texture2D" uid="uid://ch7s0xh0jcct7" path="res://assets/sprites/inverted/groundtiles_inv.png" id="1_igrof"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q6aue"]
+texture = ExtResource("1_igrof")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/probability = 0.25
+1:0/0 = 0
+1:0/0/probability = 0.25
+2:0/0 = 0
+2:0/0/probability = 0.25
+3:0/0 = 0
+3:0/0/probability = 0.25
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+
+[resource]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_q6aue")

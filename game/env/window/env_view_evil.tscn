@@ -1,0 +1,177 @@
+[gd_scene load_steps=16 format=3 uid="uid://bm5qxf01x57l8"]
+
+[ext_resource type="Script" uid="uid://be3jttu3u70xg" path="res://game/env/window/env_view.gd" id="1_5mdyr"]
+[ext_resource type="Script" uid="uid://b1n208bfvd6ht" path="res://game/env/entities/lallorona/lallorona_instance.gd" id="3_3uv4e"]
+[ext_resource type="Texture2D" uid="uid://dx8ypexwb8pyy" path="res://assets/sprites/evil_malware/alex_man_transparent.png" id="3_5mdyr"]
+[ext_resource type="Texture2D" uid="uid://bojphvco7yqpa" path="res://assets/sprites/evil_malware/alex_tongue_2.png" id="4_trydh"]
+[ext_resource type="Texture2D" uid="uid://513hgj5t21c4" path="res://assets/sprites/malware/frankhead_tex.png" id="5_ee1rl"]
+[ext_resource type="Script" uid="uid://d4mk4yqdpruuu" path="res://game/env/entities/cerberus/cerberus_instance.gd" id="6_chgn5"]
+[ext_resource type="Texture2D" uid="uid://d2i767xb5x842" path="res://assets/sprites/evil_malware/gojosensei.png" id="7_5mdyr"]
+[ext_resource type="Theme" uid="uid://b2o2kfxqoayfv" path="res://assets/themes/pause_theme.tres" id="8_nmhoy"]
+[ext_resource type="Texture2D" uid="uid://b66nly2o1ace8" path="res://icon.svg" id="9_4iexn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pdevx"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4kqe1"]
+size = Vector2(128, 128)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_pyhty"]
+color = Color(0, 0, 0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_trydh"]
+font_size = 45
+font_color = Color(0, 0, 1, 1)
+outline_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_5mdyr"]
+font_size = 45
+font_color = Color(1, 0, 1, 1)
+outline_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_3uv4e"]
+font_size = 45
+font_color = Color(1, 0, 0, 1)
+outline_size = 20
+
+[node name="EnvView" type="Window"]
+oversampling_override = 1.0
+position = Vector2i(105, 61)
+size = Vector2i(430, 365)
+script = ExtResource("1_5mdyr")
+screen_fraction = 0.333
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="LaLloronaEntity" type="AnimatableBody2D" parent="." node_paths=PackedStringArray("pjoint", "rbody")]
+unique_name_in_owner = true
+visible = false
+position = Vector2(141, 99)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("3_3uv4e")
+pjoint = NodePath("../PinJoint2D")
+rbody = NodePath("../RigidBody2D")
+death_time = 15.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LaLloronaEntity"]
+shape = SubResource("RectangleShape2D_pdevx")
+
+[node name="Sprite2D" type="Sprite2D" parent="LaLloronaEntity"]
+position = Vector2(14.999992, 5.999996)
+scale = Vector2(0.29068366, 0.29068366)
+texture = ExtResource("3_5mdyr")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+visible = false
+position = Vector2(141, 216)
+collision_layer = 0
+collision_mask = 0
+mass = 60.0
+gravity_scale = 6.0
+freeze = true
+angular_damp = 20.669
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("RectangleShape2D_4kqe1")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(0.9999943, -44.999996)
+scale = Vector2(0.0762903, 0.076290295)
+texture = ExtResource("4_trydh")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(142, 156)
+
+[node name="Frankenstein" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="Frankenstein"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("5_ee1rl")
+expand_mode = 2
+
+[node name="Cerberus" type="CanvasLayer" parent="." node_paths=PackedStringArray("labels")]
+unique_name_in_owner = true
+visible = false
+script = ExtResource("6_chgn5")
+labels = [NodePath("TextureRect/VBoxContainer/HBoxContainer/Label1"), NodePath("TextureRect/VBoxContainer/HBoxContainer/Label2"), NodePath("TextureRect/VBoxContainer/HBoxContainer/Label3")]
+
+[node name="TextureRect" type="TextureRect" parent="Cerberus"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+texture = ExtResource("7_5mdyr")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Cerberus/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSeparator" type="HSeparator" parent="Cerberus/TextureRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.68
+theme_override_styles/separator = SubResource("StyleBoxLine_pyhty")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Cerberus/TextureRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("8_nmhoy")
+
+[node name="Label1" type="Label" parent="Cerberus/TextureRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 5
+theme_override_font_sizes/font_size = 10
+text = "A"
+label_settings = SubResource("LabelSettings_trydh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Cerberus/TextureRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 5
+theme_override_font_sizes/font_size = 10
+text = "A"
+label_settings = SubResource("LabelSettings_5mdyr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="Cerberus/TextureRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 5
+theme_override_font_sizes/font_size = 10
+text = "A"
+label_settings = SubResource("LabelSettings_3uv4e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Jumpscare" type="CanvasLayer" parent="."]
+process_mode = 3
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="Jumpscare"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(424.5, 513.5)
+texture = ExtResource("9_4iexn")

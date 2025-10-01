@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bd7j880asop2s"]
+
+[ext_resource type="Texture2D" uid="uid://clmyq4aaahjn2" path="res://assets/sprites/evil_malware/bitchless.jpg" id="1_ko7iy"]
+[ext_resource type="Script" uid="uid://b8t0o5rrcc8ba" path="res://game/env/entities/spinosaurus/spinosaurus_instance.gd" id="2_eaggx"]
+
+[node name="Spinosaurus" type="Sprite2D"]
+texture = ExtResource("1_ko7iy")
+script = ExtResource("2_eaggx")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-1247, -1247, 2486, 2486)
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
