@@ -78,7 +78,12 @@ func submit_command():
 	elif input_text.begins_with("EXIT"):
 		get_tree().quit()
 	elif input_text.begins_with("PLAY"):
-		get_tree().change_scene_to_file("res://game/minigame/minigame.tscn")
+		var arg = input_text.split(" ")[1]
+		match arg:
+			"ALPHA":
+				get_tree().change_scene_to_file("res://game/minigame/minigame_alpha.tscn")
+			_:
+				get_tree().change_scene_to_file("res://game/minigame/minigame.tscn")
 	else:
 		print_to_ui(input_text)
 	input_text = ""
