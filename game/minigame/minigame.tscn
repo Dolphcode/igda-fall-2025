@@ -81,6 +81,10 @@ jumpscares = Array[Texture2D]([ExtResource("2_wlpmb"), ExtResource("3_romgs"), E
 max_move_steps = 4
 lose_screen = NodePath("Lose")
 error_label = NodePath("Lose/ColorRect/MarginContainer/VBoxContainer/Label2")
+init_num_windows = 1
+min_time_per_progression = 1.0
+max_time_per_progression = 2.0
+progression_order = Array[String](["SpinosaurusSpawner", "Window", "LaLloronaManager", "Window", "CerberusManager", "Window", "Frankenstein", "Window", "Window"])
 
 [node name="Environment" parent="." instance=ExtResource("3_o43ct")]
 unique_name_in_owner = true
@@ -292,3 +296,5 @@ text = "RETURN TO MENU"
 [connection signal="pressed" from="Pause/ColorRect/MarginContainer/VBoxContainer/Button" to="Pause" method="resume"]
 [connection signal="pressed" from="Pause/ColorRect/MarginContainer/VBoxContainer/Button2" to="Pause" method="restart"]
 [connection signal="pressed" from="Pause/ColorRect/MarginContainer/VBoxContainer/Button3" to="Pause" method="exit"]
+
+[editable path="Environment"]

@@ -27,6 +27,9 @@ class_name GameManager
 @export var progression_order: Array[String]
 
 var lose = false
+var next_prog_timeout: float = 0
+var prog_timer: float = 0
+var prog_index: int = 0
 
 # Onready
 @onready var player: Player = %Player
@@ -42,18 +45,33 @@ func _ready():
 		
 	camera.position = player.position
 	
-	%WindowManager.create_env_view()
-	%WindowManager.create_env_view()
-	%WindowManager.create_env_view()
-	%WindowManager.create_env_view()
-	%WindowManager.create_env_view()
-	%WindowManager.create_env_view()
+	for i in range(init_num_windows):
+		%WindowManager.create_env_view()
+	
+	next_prog_timeout = randf_range(min_time_per_progression, max_time_per_progression)
 	
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	# Check progression
+	if progression_enabled and prog_index < len(progression_order):
+		
+		prog_timer += delta
+		if prog_timer >= next_prog_timeout:
+			next_prog_timeout = randf_range(min_time_per_progression, max_time_per_progression)
+			prog_timer = 0
+			
+			# Apply the prog index
+			if progression_order[prog_index] == "Window":
+				%WindowManager.create_env_view()
+			else:
+				%Environment.get_node(progression_order[prog_index]).enable_entity()
+			
+			prog_index += 1
+
+	
 	# Perform X displacement
 	var map_center_disp = roundi((map.max_col - map.min_col) * 0.5)
 	player.tile_offset.x = player.tile_offset.x

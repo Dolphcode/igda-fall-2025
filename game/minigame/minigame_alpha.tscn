@@ -82,6 +82,7 @@ max_move_steps = 4
 restart_game_scene = "res://game/minigame/minigame_alpha.tscn"
 lose_screen = NodePath("Lose")
 error_label = NodePath("Lose/ColorRect/MarginContainer/VBoxContainer/Label2")
+progression_enabled = false
 
 [node name="Environment" parent="." instance=ExtResource("6_k43ic")]
 unique_name_in_owner = true
