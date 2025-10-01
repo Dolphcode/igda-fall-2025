@@ -158,7 +158,6 @@ func gen_row(cell_row: int, chunk_type: int, row_num_relative: int) -> void:
 			ground_layer.set_cell(Vector2i(i, cell_row), 0, Vector2i(0, chunk_type))
 		
 		var l_or_r = randi_range(0, 1)
-		var spawn_x = max_col + 1 if l_or_r == 0 else min_col - 1
 		var dir = -1 if l_or_r == 0 else 1
 		var picked_speed = random_log_speeds.pick_random()
 		
@@ -167,6 +166,8 @@ func gen_row(cell_row: int, chunk_type: int, row_num_relative: int) -> void:
 			dir = -dir
 		last_log_speed = picked_speed
 		last_log_direction = dir
+		
+		var spawn_x = max_col + 1 if dir == -1 else min_col - 1
 		
 		var pos: Vector2 = obstacle_layer.map_to_local(Vector2i(spawn_x, cell_row))
 		pos = to_local(obstacle_layer.to_global(pos))
